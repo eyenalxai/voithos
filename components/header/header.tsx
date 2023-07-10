@@ -3,6 +3,7 @@ import { retrieveUserFromSession } from '@/lib/session'
 import { UserMenu } from '@/components/header/user-menu'
 import { prisma } from '@/lib/prisma'
 import { getUsage } from '@/lib/actions'
+import { Sidebar } from '@/components/sidebar/sidebar'
 
 export const Header = async () => {
   const user = await retrieveUserFromSession()
@@ -43,6 +44,7 @@ export const Header = async () => {
         'gap-4'
       )}
     >
+      <Sidebar />
       <UserMenu
         user={user}
         totalSpent={totalSpent}

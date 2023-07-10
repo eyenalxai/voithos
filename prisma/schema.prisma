@@ -21,6 +21,7 @@ model User {
 model Chat {
   id        String    @id
   createdAt DateTime  @default(now())
+  title     String
   messages  Message[]
   userId    Int
   user      User      @relation(fields: [userId], references: [id])

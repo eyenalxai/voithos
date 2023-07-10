@@ -7,6 +7,7 @@ import { saveMessage } from '@/lib/actions'
 import { ChatCompletionRequestMessage } from 'openai-edge'
 import { ChatGPTModel } from '@prisma/client'
 import { removeMessagesToFitLimit } from '@/lib/model-limits'
+import { shorten } from '@/lib/utils'
 
 export async function POST(req: Request) {
   const user = await retrieveUserFromSession()
@@ -50,7 +51,8 @@ export async function POST(req: Request) {
     },
     create: {
       id: chatId,
-      userId: user.id
+      userId: user.id,
+      title: shorten(prompt, 30)
     }
   })
 
