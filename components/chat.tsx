@@ -22,14 +22,18 @@ import { ChatScrollAnchor } from '@/components/chat-panel/chat-scroll-anchor'
 
 type ChatProps = {
   uuid4: string
-  model: ChatGPTModel
   initialMessages: Message[]
+  initialModel: ChatGPTModel
 }
 
-export default function Chat({ uuid4, initialMessages }: ChatProps) {
+export default function Chat({
+  uuid4,
+  initialMessages,
+  initialModel
+}: ChatProps) {
   const queryClient = useQueryClient()
 
-  const [model, setModel] = useState<ChatGPTModel>('GPT_3_5_TURBO')
+  const [model, setModel] = useState<ChatGPTModel>(initialModel)
 
   const { messages, append, reload, stop, isLoading, input, setInput } =
     useChat({

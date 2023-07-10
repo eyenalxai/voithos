@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { countTokens, getTokenCost } from '@/lib/pricing'
 
 export const saveMessage = async (
+  userId: number,
   chatId: string,
   content: string,
   role: Role,
@@ -14,20 +15,25 @@ export const saveMessage = async (
     data: {
       content: content,
       role: role,
-      chatId: chatId,
+      chatId: chatId
+    }
+  })
+
+  await prisma.usage.create({
+    data: {
       tokensCount: tokensCount,
       chatGPTModel: model,
-      priceUSD: priceUSD
+      role: role,
+      priceUSD: priceUSD,
+      userId: userId
     }
   })
 }
 
-export const getUsage = async (chatIds: string[]) => {
-  const totalSpent = await prisma.message.aggregate({
+export const getUsage = async (userId: number) => {
+  const totalSpent = await prisma.usage.aggregate({
     where: {
-      chatId: {
-        in: chatIds
-      }
+      userId: userId
     },
     _sum: {
       priceUSD: true
@@ -38,11 +44,9 @@ export const getUsage = async (chatIds: string[]) => {
   const firstDayThisMonth = new Date(date.getFullYear(), date.getMonth(), 1)
   const lastDayThisMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0)
 
-  const totalSpentThisMonth = await prisma.message.aggregate({
+  const totalSpentThisMonth = await prisma.usage.aggregate({
     where: {
-      chatId: {
-        in: chatIds
-      },
+      userId: userId,
       createdAt: {
         gte: firstDayThisMonth,
         lte: lastDayThisMonth
@@ -56,11 +60,9 @@ export const getUsage = async (chatIds: string[]) => {
   const firstDayLastMonth = new Date(date.getFullYear(), date.getMonth() - 1, 1)
   const lastDayLastMonth = new Date(date.getFullYear(), date.getMonth(), 0)
 
-  const totalSpentLastMonth = await prisma.message.aggregate({
+  const totalSpentLastMonth = await prisma.usage.aggregate({
     where: {
-      chatId: {
-        in: chatIds
-      },
+      userId: userId,
       createdAt: {
         gte: firstDayLastMonth,
         lte: lastDayLastMonth

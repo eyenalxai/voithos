@@ -1,7 +1,6 @@
 import { retrieveUserFromSession } from '@/lib/session'
 import { redirect } from 'next/navigation'
 import Chat from '@/components/chat'
-import { ChatGPTModel } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 
 export type ChatPageProps = {
@@ -16,8 +15,6 @@ export default async function ChatPage({ params }: ChatPageProps) {
   if (!user) {
     redirect('/sign-in')
   }
-
-  const model: ChatGPTModel = 'GPT_3_5_TURBO'
 
   const chat = await prisma.chat.findFirst({
     where: {
@@ -34,8 +31,8 @@ export default async function ChatPage({ params }: ChatPageProps) {
   return (
     <Chat
       uuid4={params.uuid4}
-      model={model}
       initialMessages={initialMessages}
+      initialModel={chat?.lastUsedModel || 'GPT_3_5_TURBO'}
     />
   )
 }

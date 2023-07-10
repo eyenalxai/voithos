@@ -43,19 +43,22 @@ export const POST = async (req: Request) => {
         connect: {
           id: user.id
         }
-      }
+      },
+      lastUsedModel: model
     },
     create: {
       id: chatId,
+      lastUsedModel: model,
       userId: user.id,
       title: shorten(prompt, 30)
     }
   })
 
   const stream = OpenAIStream(response, {
-    onStart: async () => await saveMessage(chat.id, prompt, 'USER', model),
+    onStart: async () =>
+      await saveMessage(user.id, chat.id, prompt, 'USER', model),
     onCompletion: async (completion: string) =>
-      await saveMessage(chatId, completion, 'ASSISTANT', model)
+      await saveMessage(user.id, chatId, completion, 'ASSISTANT', model)
   })
 
   return new StreamingTextResponse(stream)

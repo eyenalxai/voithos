@@ -15,28 +15,37 @@ model User {
   createdAt DateTime @default(now())
   username  String   @unique
   email     String   @unique
-  Chat      Chat[]
+  chats     Chat[]
+  usage     Usage[]
 }
 
 model Chat {
-  id        String    @id
-  createdAt DateTime  @default(now())
-  title     String
-  messages  Message[]
-  userId    Int
-  user      User      @relation(fields: [userId], references: [id])
+  id            String       @id
+  createdAt     DateTime     @default(now())
+  title         String
+  messages      Message[]
+  lastUsedModel ChatGPTModel
+  userId        Int
+  user          User         @relation(fields: [userId], references: [id])
 }
 
 model Message {
+  id      Int    @id @unique @default(autoincrement())
+  content String
+  role    Role
+  chatId  String
+  chat    Chat   @relation(fields: [chatId], references: [id])
+}
+
+model Usage {
   id           Int          @id @unique @default(autoincrement())
   createdAt    DateTime     @default(now())
-  content      String
-  role         Role
   chatGPTModel ChatGPTModel
+  role         Role
   tokensCount  Int
   priceUSD     Float
-  chatId       String
-  chat         Chat         @relation(fields: [chatId], references: [id])
+  userId       Int
+  user         User         @relation(fields: [userId], references: [id])
 }
 
 enum Role {
