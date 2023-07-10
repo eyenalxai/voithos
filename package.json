@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "4.16.2",
+    "ai": "^2.1.17",
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
     "lucide-react": "^0.259.0",
