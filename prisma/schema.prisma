@@ -15,4 +15,21 @@ model User {
   createdAt DateTime @default(now())
   username  String   @unique
   email     String   @unique
+  Chat      Chat[]
+}
+
+model Chat {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  messages  Message[]
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+}
+
+model Message {
+  id        Int      @id @unique @default(autoincrement())
+  createdAt DateTime @default(now())
+  content   String
+  chatId    Int
+  chat      Chat     @relation(fields: [chatId], references: [id])
 }
