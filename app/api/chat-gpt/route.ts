@@ -12,9 +12,7 @@ import { shorten } from '@/lib/utils'
 export const POST = async (req: Request) => {
   const user = await retrieveUserFromSession()
 
-  if (!user) {
-    return new NextResponse('Unauthorized', { status: 401 })
-  }
+  if (!user) return new NextResponse('Unauthorized', { status: 401 })
 
   const {
     messages,
@@ -28,9 +26,7 @@ export const POST = async (req: Request) => {
 
   const prompt = messages[messages.length - 1].content
 
-  if (!prompt) {
-    return new NextResponse('No prompt?', { status: 500 })
-  }
+  if (!prompt) return new NextResponse('No prompt?', { status: 400 })
 
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',

@@ -29,11 +29,9 @@ export function UserMenu({
     <div className="flex items-center justify-between">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="pl-0">
-            <div className="ml-2">{user.username}</div>
-          </Button>
+          <Button variant="ghost">{user.username}</Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent sideOffset={8} align="start" className="w-[180px]">
+        <DropdownMenuContent align="start" className="w-[180px]">
           <DropdownMenuItem className="flex-col items-start">
             <div className="text-xs font-medium">{user.username}</div>
             <div className="text-xs text-slate-500">{user.email}</div>

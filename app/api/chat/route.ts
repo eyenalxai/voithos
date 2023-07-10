@@ -2,38 +2,29 @@ import { retrieveUserFromSession } from '@/lib/session'
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-export const GET = async () => {
+export const DELETE = async (request: Request) => {
   const user = await retrieveUserFromSession()
 
   if (!user) return new NextResponse('Unauthorized', { status: 401 })
 
-  const chats = await prisma.chat.findMany({
-    where: {
-      userId: user.id
-    }
-  })
+  const { searchParams } = new URL(request.url)
+  console.log('searchParams: ', searchParams)
+  const chatId = searchParams.get('chatId')
+  console.log('chatId: ', chatId)
 
-  return NextResponse.json(chats.reverse())
-}
-
-export const DELETE = async () => {
-  const user = await retrieveUserFromSession()
-
-  if (!user) {
-    return new NextResponse('Unauthorized', { status: 401 })
-  }
+  if (!chatId) return new NextResponse('No chatId?', { status: 400 })
 
   await prisma.message.deleteMany({
     where: {
       chat: {
-        userId: user.id
+        id: chatId
       }
     }
   })
 
-  await prisma.chat.deleteMany({
+  await prisma.chat.delete({
     where: {
-      userId: user.id
+      id: chatId
     }
   })
 

@@ -29,7 +29,8 @@ export const Header = async () => {
   return (
     <header
       className={cn(
-        'p-2',
+        'pl-6',
+        'py-2',
         'sticky',
         'top-0',
         'z-50',
@@ -38,7 +39,7 @@ export const Header = async () => {
         'w-full',
         'shrink-0',
         'items-center',
-        'justify-between',
+        'justify-start',
         ['bg-white', 'dark:bg-slate-950'],
         'border-b',
         'gap-4'
