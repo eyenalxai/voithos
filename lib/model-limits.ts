@@ -2,7 +2,7 @@ import { ChatGPTModel } from '@prisma/client'
 import { ChatCompletionRequestMessage } from 'openai-edge'
 import { countTokens } from '@/lib/pricing'
 
-const LIMIT_MODIFIER = 0.75
+const LIMIT_MODIFIER = 0.65
 
 export const GPT_4_TOKENS_LIMIT = 8000
 export const GPT_3_5_TURBO_TOKENS_LIMIT = 4000

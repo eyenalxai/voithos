@@ -8,6 +8,7 @@ import { ChatCompletionRequestMessage } from 'openai-edge'
 import { ChatGPTModel } from '@prisma/client'
 import { removeMessagesToFitLimit } from '@/lib/model-limits'
 import { shorten } from '@/lib/utils'
+import { SYSTEM_MESSAGE } from '@/lib/constants'
 
 export const POST = async (req: Request) => {
   const user = await retrieveUserFromSession()
@@ -31,7 +32,7 @@ export const POST = async (req: Request) => {
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     stream: true,
-    messages: removeMessagesToFitLimit(messages, model)
+    messages: [SYSTEM_MESSAGE, ...removeMessagesToFitLimit(messages, model)]
   })
 
   const chat = await prisma.chat.upsert({
