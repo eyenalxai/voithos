@@ -29,6 +29,14 @@ export const authOptions: NextAuthOptions = {
     // @ts-ignore
     async jwt({ token, profile }: { token: JWT; profile?: GitHubProfile }) {
       if (profile) {
+        const allowedEmails = JSON.parse(process.env.ALLOWED_EMAILS || '[]')
+        if (
+          allowedEmails.length > 0 &&
+          !allowedEmails.includes(profile.email)
+        ) {
+          return Promise.reject(new Error('Not allowed'))
+        }
+
         const user = await prisma.user.upsert({
           where: { id: profile.id },
           update: {
