@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils'
 import { retrieveUserFromSession } from '@/lib/session'
 import { UserMenu } from '@/components/header/user-menu'
+import { prisma } from '@/lib/prisma'
+import { getUsage } from '@/lib/actions'
 
 export const Header = async () => {
   const user = await retrieveUserFromSession()
@@ -8,6 +10,20 @@ export const Header = async () => {
   if (!user) {
     return null
   }
+
+  const chats = await prisma.chat.findMany({
+    where: {
+      userId: user.id
+    },
+    select: {
+      id: true
+    }
+  })
+
+  const chatIds = chats.map(chat => chat.id)
+
+  const { totalSpent, totalSpentThisMonth, totalSpentLastMonth } =
+    await getUsage(chatIds)
 
   return (
     <header
@@ -27,7 +43,12 @@ export const Header = async () => {
         'gap-4'
       )}
     >
-      <UserMenu user={user} />
+      <UserMenu
+        user={user}
+        totalSpent={totalSpent}
+        totalSpentThisMonth={totalSpentThisMonth}
+        totalSpentLastMonth={totalSpentLastMonth}
+      />
     </header>
   )
 }

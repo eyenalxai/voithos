@@ -1,33 +1,71 @@
 'use client'
 
-import { User } from '@prisma/client'
 import { signOut } from 'next-auth/react'
+
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
+  DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import { User } from '@prisma/client'
 
 type UserMenuProps = {
   user: User
+  totalSpent: number | null
+  totalSpentThisMonth: number | null
+  totalSpentLastMonth: number | null
 }
 
-export const UserMenu = ({ user }: UserMenuProps) => {
+export function UserMenu({
+  user,
+  totalSpent,
+  totalSpentThisMonth,
+  totalSpentLastMonth
+}: UserMenuProps) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant={'ghost'}>{user.username}</Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>{user.email}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <Button variant={'link'} onClick={() => signOut({ callbackUrl: '/' })}>
-          Log Out
-        </Button>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="flex items-center justify-between">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="pl-0">
+            <div className="ml-2">{user.username}</div>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent sideOffset={8} align="start" className="w-[180px]">
+          <DropdownMenuItem className="flex-col items-start">
+            <div className="text-xs font-medium">{user.username}</div>
+            <div className="text-xs text-slate-500">{user.email}</div>
+            {totalSpentThisMonth && totalSpentThisMonth > 0.1 && (
+              <div className="mt-2 text-xs text-slate-500">
+                ${totalSpentThisMonth.toFixed(2)} — Usage This Month
+              </div>
+            )}
+            {totalSpentLastMonth && totalSpentLastMonth > 0.1 && (
+              <div className="mt-2 text-xs text-slate-500">
+                ${totalSpentLastMonth.toFixed(2)} — Usage Last Month
+              </div>
+            )}
+            {totalSpent && totalSpent > 0.1 && (
+              <div className="text-xs text-slate-500">
+                ${totalSpent.toFixed(2)} — Usage Total
+              </div>
+            )}
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onClick={() =>
+              signOut({
+                callbackUrl: '/'
+              })
+            }
+            className="text-xs"
+          >
+            Log Out
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   )
 }
