@@ -911,6 +911,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uuid@npm:^9.0.2":
+  version: 9.0.2
+  resolution: "@types/uuid@npm:9.0.2"
+  checksum: 1754bcf3444e1e3aeadd6e774fc328eb53bc956665e2e8fb6ec127aa8e1f43d9a224c3d22a9a6233dca8dd81a12dc7fed4d84b8876dd5ec82d40f574f7ff8b68
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/parser@npm:^5.42.0":
   version: 5.60.0
   resolution: "@typescript-eslint/parser@npm:5.60.0"
@@ -3530,6 +3537,7 @@ __metadata:
     "@types/node": 20.4.1
     "@types/react": 18.2.14
     "@types/react-dom": 18.2.6
+    "@types/uuid": ^9.0.2
     ai: ^2.1.17
     autoprefixer: 10.4.14
     class-variance-authority: ^0.6.1
@@ -3552,6 +3560,7 @@ __metadata:
     tailwindcss: 3.3.2
     tailwindcss-animate: ^1.0.6
     typescript: 5.1.6
+    uuid: ^9.0.0
   languageName: unknown
   linkType: soft
 
@@ -5071,6 +5080,15 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
   languageName: node
   linkType: hard
 

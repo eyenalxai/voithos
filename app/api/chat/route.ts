@@ -11,7 +11,9 @@ export async function POST(req: Request) {
     return new NextResponse('Unauthorized', { status: 401 })
   }
 
-  const { messages, prompt, chatId } = await req.json()
+  const { messages, chatId } = await req.json()
+
+  const prompt = messages[messages.length - 1].content
 
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',

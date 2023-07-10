@@ -2,8 +2,16 @@
 
 import { useChat } from 'ai/react'
 
-export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat()
+type ChatProps = {
+  uuid4: string
+}
+
+export default function Chat({ uuid4 }: ChatProps) {
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    body: {
+      chatId: uuid4
+    }
+  })
 
   return (
     <div>
