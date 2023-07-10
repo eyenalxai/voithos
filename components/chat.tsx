@@ -5,6 +5,7 @@ import { ChatGPTModel, Message } from '@prisma/client'
 import { useQueryClient } from 'react-query'
 import { CHATS_QUERY_KEY } from '@/lib/constants'
 import { mapMessages } from '@/lib/mapping'
+import { ChatPanel } from '@/components/chat-panel/chat-panel'
 
 type ChatProps = {
   uuid4: string
@@ -15,18 +16,19 @@ type ChatProps = {
 export default function Chat({ uuid4, model, initialMessages }: ChatProps) {
   const queryClient = useQueryClient()
 
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: '/api/chat-gpt',
-    initialMessages: mapMessages(initialMessages),
-    body: {
-      chatId: uuid4,
-      model: model
-    },
-    onFinish: () =>
-      queryClient
-        .invalidateQueries([CHATS_QUERY_KEY])
-        .then(() => queryClient.refetchQueries([CHATS_QUERY_KEY]))
-  })
+  const { messages, append, reload, stop, isLoading, input, setInput } =
+    useChat({
+      api: '/api/chat-gpt',
+      initialMessages: mapMessages(initialMessages),
+      body: {
+        chatId: uuid4,
+        model: model
+      },
+      onFinish: () =>
+        queryClient
+          .invalidateQueries([CHATS_QUERY_KEY])
+          .then(() => queryClient.refetchQueries([CHATS_QUERY_KEY]))
+    })
 
   return (
     <div>
@@ -35,13 +37,13 @@ export default function Chat({ uuid4, model, initialMessages }: ChatProps) {
           {m.role}: {m.content}
         </div>
       ))}
-
-      <form onSubmit={handleSubmit}>
-        <label>
-          Say something...
-          <input value={input} onChange={handleInputChange} />
-        </label>
-      </form>
+      <ChatPanel
+        isLoading={isLoading}
+        stop={stop}
+        append={append}
+        input={input}
+        setInput={setInput}
+      />
     </div>
   )
 }

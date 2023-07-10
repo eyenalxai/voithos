@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={cn(
           'font-sans antialiased',
-          fontSans.variable,
+          fontSans.style,
           fontMono.variable
         )}
       >
