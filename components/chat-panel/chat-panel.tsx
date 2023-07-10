@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { IconStop } from '@/components/ui/icons'
 import { ButtonScrollToBottom } from '@/components/chat-panel/button-scroll-to-bottom'
 import { PromptForm } from '@/components/chat-panel/prompt-form'
+import { cn } from '@/lib/utils'
 
 export interface ChatPanelProps
   extends Pick<
@@ -31,7 +32,7 @@ export function ChatPanel({
             <Button
               variant="outline"
               onClick={() => stop()}
-              className="bg-background"
+              className={cn('bg-background', 'mb-6')}
             >
               <IconStop className="mr-2" />
               Stop generating

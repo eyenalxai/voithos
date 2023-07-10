@@ -7,7 +7,7 @@ import { saveMessage } from '@/lib/actions'
 import { ChatCompletionRequestMessage } from 'openai-edge'
 import { ChatGPTModel } from '@prisma/client'
 import { removeMessagesToFitLimit } from '@/lib/model-limits'
-import { shorten } from '@/lib/utils'
+import { enumToModelName, shorten } from '@/lib/utils'
 import { SYSTEM_MESSAGE } from '@/lib/constants'
 
 export const POST = async (req: Request) => {
@@ -30,7 +30,7 @@ export const POST = async (req: Request) => {
   if (!prompt) return new NextResponse('No prompt?', { status: 400 })
 
   const response = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
+    model: enumToModelName(model),
     stream: true,
     messages: [SYSTEM_MESSAGE, ...removeMessagesToFitLimit(messages, model)]
   })
