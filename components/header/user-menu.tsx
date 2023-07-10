@@ -35,19 +35,19 @@ export function UserMenu({
           <DropdownMenuItem className="flex-col items-start">
             <div className="text-xs font-medium">{user.username}</div>
             <div className="text-xs text-slate-500">{user.email}</div>
-            {totalSpentThisMonth && totalSpentThisMonth > 0.1 && (
+            {totalSpentThisMonth && totalSpentThisMonth > 0.01 && (
               <div className="mt-2 text-xs text-slate-500">
-                ${totalSpentThisMonth.toFixed(2)} — Usage This Month
+                ${totalSpentThisMonth.toFixed(2)} This Month
               </div>
             )}
-            {totalSpentLastMonth && totalSpentLastMonth > 0.1 && (
+            {totalSpentLastMonth && totalSpentLastMonth > 0.01 && (
               <div className="mt-2 text-xs text-slate-500">
-                ${totalSpentLastMonth.toFixed(2)} — Usage Last Month
+                ${totalSpentLastMonth.toFixed(2)} Last Month
               </div>
             )}
-            {totalSpent && totalSpent > 0.1 && (
+            {totalSpent && totalSpent > 0.01 && (
               <div className="text-xs text-slate-500">
-                ${totalSpent.toFixed(2)} — Usage Total
+                ${totalSpent.toFixed(2)} Total
               </div>
             )}
           </DropdownMenuItem>

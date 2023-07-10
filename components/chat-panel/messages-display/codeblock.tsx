@@ -2,11 +2,12 @@
 
 import { FC, memo } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { coldarkDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 import { IconCheck, IconCopy } from '@/components/ui/icons'
 import { Button } from '@/components/ui/button'
 import { useCopyToClipboard } from '@/lib/hook/use-copy-to-clipboard'
+import { cn } from '@/lib/utils'
 
 interface Props {
   language: string
@@ -22,14 +23,32 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
   }
 
   return (
-    <div className="codeblock relative w-full bg-zinc-950 font-sans">
-      <div className="flex w-full items-center justify-between bg-zinc-800 px-6 py-2 pr-4 text-zinc-100">
+    <div className="codeblock relative w-full bg-slate-950 font-sans">
+      <div
+        className={cn(
+          'flex',
+          'w-full',
+          'items-center',
+          'justify-between',
+          ['bg-slate-50', 'dark:bg-slate-800'],
+          'px-6',
+          'py-2',
+          'pr-4',
+          ['text-slate-950', 'dark:text-slate-100']
+        )}
+      >
         <span className="text-xs lowercase">{language}</span>
         <div className="flex items-center space-x-1">
           <Button
             variant="ghost"
             size="icon"
-            className="text-xs hover:bg-zinc-800 focus-visible:ring-1 focus-visible:ring-slate-700 focus-visible:ring-offset-0"
+            className={cn(
+              'text-xs',
+              ['hover:bg-slate-200', 'dark:hover:bg-slate-800'],
+              'focus-visible:ring-1',
+              'focus-visible:ring-slate-700',
+              'focus-visible:ring-offset-0'
+            )}
             onClick={onCopy}
           >
             {isCopied ? <IconCheck /> : <IconCopy />}
@@ -39,7 +58,7 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
       </div>
       <SyntaxHighlighter
         language={language}
-        style={coldarkDark}
+        style={nord}
         PreTag="div"
         customStyle={{
           margin: 0,
