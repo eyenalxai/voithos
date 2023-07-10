@@ -35,19 +35,18 @@ export default function Chat({
 
   const [model, setModel] = useState<ChatGPTModel>(initialModel)
 
-  const { messages, append, reload, stop, isLoading, input, setInput } =
-    useChat({
-      api: '/api/chat-gpt',
-      initialMessages: mapMessages(initialMessages),
-      body: {
-        chatId: uuid4,
-        model: model
-      },
-      onFinish: () =>
-        queryClient
-          .invalidateQueries([CHATS_QUERY_KEY])
-          .then(() => queryClient.refetchQueries([CHATS_QUERY_KEY]))
-    })
+  const { messages, append, stop, isLoading, input, setInput } = useChat({
+    api: '/api/chat-gpt',
+    initialMessages: mapMessages(initialMessages),
+    body: {
+      chatId: uuid4,
+      model: model
+    },
+    onFinish: () =>
+      queryClient
+        .invalidateQueries([CHATS_QUERY_KEY])
+        .then(() => queryClient.refetchQueries([CHATS_QUERY_KEY]))
+  })
 
   return (
     <div className={cn('flex', 'flex-col', 'items-center')}>
