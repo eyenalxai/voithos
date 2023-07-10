@@ -1,5 +1,6 @@
 import { retrieveUserFromSession } from '@/lib/session'
 import { redirect } from 'next/navigation'
+import Chat from '@/components/chat'
 
 export default async function Home() {
   const user = await retrieveUserFromSession()
@@ -10,7 +11,7 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Hello</h1>
+      <Chat />
     </main>
   )
 }

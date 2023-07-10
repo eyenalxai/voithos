@@ -3542,6 +3542,7 @@ __metadata:
     next: 13.4.9
     next-auth: ^4.22.1
     next-themes: ^0.2.1
+    openai-edge: ^1.2.0
     postcss: 8.4.25
     prettier: ^3.0.0
     prisma: ^4.16.2
@@ -3777,6 +3778,13 @@ __metadata:
     is-inside-container: ^1.0.0
     is-wsl: ^2.2.0
   checksum: 3993c0f61d51fed8ac290e99c9c3cf45d3b6cfb3e2aa2b74cafd312c3486c22fd81df16ac8f3ab91dd8a4e3e729a16fc2480cfc406c4833416cf908acf1ae7c9
+  languageName: node
+  linkType: hard
+
+"openai-edge@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "openai-edge@npm:1.2.0"
+  checksum: 5fa7962527b4001fe3beb29cb983014b1f7a1051199b4b1df60dc5638b8d31d9f8f8924b7795b997f609cc15cd19f93a64d5e55cd99e5d52a9970acd267e97c9
   languageName: node
   linkType: hard
 
