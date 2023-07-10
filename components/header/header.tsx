@@ -40,7 +40,8 @@ export const Header = async () => {
         'shrink-0',
         'items-center',
         'justify-start',
-        ['bg-white', 'dark:bg-slate-950'],
+        'backdrop-blur',
+
         'border-b',
         'gap-4'
       )}
