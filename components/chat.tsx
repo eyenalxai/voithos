@@ -16,6 +16,7 @@ export default function Chat({ uuid4, model, initialMessages }: ChatProps) {
   const queryClient = useQueryClient()
 
   const { messages, input, handleInputChange, handleSubmit } = useChat({
+    api: '/api/chat-gpt',
     initialMessages: mapMessages(initialMessages),
     body: {
       chatId: uuid4,

@@ -1,13 +1,3 @@
-type RevalidateRequestInit = RequestInit & {
-  next: {
-    revalidate: number
-  }
-}
-
-type CacheRequestInit = RequestInit & {
-  cache: string
-}
-
 const handleHTTPError = (response: Response): Response => {
   if (!response.ok) {
     const { status, statusText = 'Unknown error' } = response
@@ -21,10 +11,7 @@ const logAndThrowError = (error: Error): never => {
   throw error
 }
 
-export const fetcher = <T>(
-  path: string,
-  options?: RevalidateRequestInit | CacheRequestInit
-): Promise<T> => {
+export const fetcher = <T>(path: string, options?: RequestInit): Promise<T> => {
   return fetch(path, options)
     .then(handleHTTPError)
     .then(response => response.json())

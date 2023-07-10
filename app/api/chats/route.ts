@@ -2,7 +2,7 @@ import { retrieveUserFromSession } from '@/lib/session'
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
-export async function GET() {
+export const GET = async () => {
   const user = await retrieveUserFromSession()
 
   if (!user) {
@@ -15,5 +15,21 @@ export async function GET() {
     }
   })
 
-  return NextResponse.json(chats)
+  return NextResponse.json(chats.reverse())
+}
+
+export const DELETE = async () => {
+  const user = await retrieveUserFromSession()
+
+  if (!user) {
+    return new NextResponse('Unauthorized', { status: 401 })
+  }
+
+  await prisma.chat.deleteMany({
+    where: {
+      userId: user.id
+    }
+  })
+
+  return NextResponse.json({ success: true })
 }

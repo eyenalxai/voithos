@@ -9,7 +9,7 @@ import { ChatGPTModel } from '@prisma/client'
 import { removeMessagesToFitLimit } from '@/lib/model-limits'
 import { shorten } from '@/lib/utils'
 
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   const user = await retrieveUserFromSession()
 
   if (!user) {
