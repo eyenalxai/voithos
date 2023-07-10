@@ -15,6 +15,7 @@ import { v4 } from 'uuid'
 import { Separator } from '@/components/ui/separator'
 import { IconSidebar, IconTrash } from '@/components/ui/icons'
 import { useChats } from '@/lib/hook/chats'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 export const Sidebar = () => {
   const { chats, deleteChatMutation, deleteAllChatsMutation } = useChats()
@@ -43,43 +44,45 @@ export const Sidebar = () => {
           <div className={cn('flex', 'flex-col', 'justify-between', 'h-full')}>
             <div>
               <Separator className={cn('my-2')} />
-              <div
-                className={cn(
-                  'flex',
-                  'flex-col',
-                  'gap-2',
-                  'justify-center',
-                  'items-start'
-                )}
-              >
-                {chats?.map(chat => (
-                  <div
-                    key={chat.id}
-                    className={cn(
-                      'flex',
-                      'flex-row',
-                      'justify-between',
-                      'items-center',
-                      'w-full',
-                      'gap-2'
-                    )}
-                  >
-                    <Button
-                      variant={'ghost'}
-                      asChild
-                      className={cn('w-full', 'flex', 'justify-start')}
+              <ScrollArea className={cn('h-[calc(100vh-10rem)]')}>
+                <div
+                  className={cn(
+                    'flex',
+                    'flex-col',
+                    'gap-2',
+                    'justify-center',
+                    'items-start'
+                  )}
+                >
+                  {chats?.map(chat => (
+                    <div
+                      key={chat.id}
+                      className={cn(
+                        'flex',
+                        'flex-row',
+                        'justify-between',
+                        'items-center',
+                        'w-full',
+                        'gap-2'
+                      )}
                     >
-                      <Link href={`/chat/${chat.id}`}>{chat.title}</Link>
-                    </Button>
-                    <Button
-                      variant={'ghost'}
-                      onClick={() => deleteChatMutation(chat.id)}
-                    >
-                      <IconTrash />
-                    </Button>
-                  </div>
-                ))}
-              </div>
+                      <Button
+                        variant={'ghost'}
+                        asChild
+                        className={cn('w-full', 'flex', 'justify-start')}
+                      >
+                        <Link href={`/chat/${chat.id}`}>{chat.title}</Link>
+                      </Button>
+                      <Button
+                        variant={'ghost'}
+                        onClick={() => deleteChatMutation(chat.id)}
+                      >
+                        <IconTrash />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
             </div>
             <SheetFooter className={cn('mb-10')}>
               <Button
