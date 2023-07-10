@@ -1,15 +1,18 @@
 'use client'
 
 import { useChat } from 'ai/react'
+import { ChatGPTModel } from '@prisma/client'
 
 type ChatProps = {
   uuid4: string
+  model: ChatGPTModel
 }
 
-export default function Chat({ uuid4 }: ChatProps) {
+export default function Chat({ uuid4, model }: ChatProps) {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     body: {
-      chatId: uuid4
+      chatId: uuid4,
+      model: model
     }
   })
 

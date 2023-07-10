@@ -5,6 +5,8 @@ import { retrieveUserFromSession } from '@/lib/session'
 import { prisma } from '@/lib/prisma'
 import { saveMessage } from '@/lib/save-message'
 import { ChatCompletionRequestMessage } from 'openai-edge'
+import { ChatGPTModel } from '@prisma/client'
+import { removeMessagesToFitLimit } from '@/lib/model-limits'
 
 export async function POST(req: Request) {
   const user = await retrieveUserFromSession()
@@ -15,10 +17,12 @@ export async function POST(req: Request) {
 
   const {
     messages,
-    chatId
+    chatId,
+    model
   }: {
     messages: ChatCompletionRequestMessage[]
     chatId: string
+    model: ChatGPTModel
   } = await req.json()
 
   const prompt = messages[messages.length - 1].content
@@ -30,7 +34,7 @@ export async function POST(req: Request) {
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     stream: true,
-    messages
+    messages: removeMessagesToFitLimit(messages, model)
   })
 
   const chat = await prisma.chat.upsert({
@@ -51,9 +55,9 @@ export async function POST(req: Request) {
   })
 
   const stream = OpenAIStream(response, {
-    onStart: async () => await saveMessage(chat.id, prompt, 'USER'),
+    onStart: async () => await saveMessage(chat.id, prompt, 'USER', model),
     onCompletion: async (completion: string) =>
-      await saveMessage(chatId, completion, 'ASSISTANT')
+      await saveMessage(chatId, completion, 'ASSISTANT', model)
   })
 
   return new StreamingTextResponse(stream)

@@ -2571,6 +2571,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gpt-tokenizer@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "gpt-tokenizer@npm:2.1.1"
+  dependencies:
+    rfc4648: ^1.5.2
+  checksum: f04eeeb4a1ddbe14b7dc08e1ec6792e1ade341e3ab0296ce7549ac77f007bf28864e0b4ebadc142298e212fe1856b45671e9e00cf173d41b71dae9e1da3a27ea
+  languageName: node
+  linkType: hard
+
 "graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
@@ -3546,6 +3555,7 @@ __metadata:
     eslint-config-next: 13.4.9
     eslint-config-prettier: ^8.8.0
     eslint-plugin-tailwindcss: ^3.13.0
+    gpt-tokenizer: ^2.1.1
     lucide-react: ^0.259.0
     next: 13.4.9
     next-auth: ^4.22.1
@@ -4334,6 +4344,13 @@ __metadata:
   version: 1.0.4
   resolution: "reusify@npm:1.0.4"
   checksum: c3076ebcc22a6bc252cb0b9c77561795256c22b757f40c0d8110b1300723f15ec0fc8685e8d4ea6d7666f36c79ccc793b1939c748bf36f18f542744a4e379fcc
+  languageName: node
+  linkType: hard
+
+"rfc4648@npm:^1.5.2":
+  version: 1.5.2
+  resolution: "rfc4648@npm:1.5.2"
+  checksum: bc3d9c4fbfdbbb363c640f9cb56fc01d2e1ca64305b2b6409aaf59cb85c1adecb2545c03deee8889cce2685e15fb7dd47581665c288e4f45068ffece2642f2e8
   languageName: node
   linkType: hard
 

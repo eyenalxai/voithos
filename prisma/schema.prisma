@@ -27,16 +27,24 @@ model Chat {
 }
 
 model Message {
-  id        Int      @id @unique @default(autoincrement())
-  createdAt DateTime @default(now())
-  content   String
-  role      Role
-  chatId    String
-  chat      Chat     @relation(fields: [chatId], references: [id])
+  id           Int          @id @unique @default(autoincrement())
+  createdAt    DateTime     @default(now())
+  content      String
+  role         Role
+  chatGPTModel ChatGPTModel
+  tokensCount  Int
+  priceUSD     Float
+  chatId       String
+  chat         Chat         @relation(fields: [chatId], references: [id])
 }
 
 enum Role {
   USER
   ASSISTANT
   SYSTEM
+}
+
+enum ChatGPTModel {
+  GPT_3_5_TURBO
+  GPT_4
 }
