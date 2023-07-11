@@ -1,7 +1,7 @@
 import GitHubProvider from 'next-auth/providers/github'
 import { NextAuthOptions } from 'next-auth'
-import { JWT } from 'next-auth/jwt'
 import { prisma } from '@/lib/prisma'
+import { JWT } from '@/lib/session'
 
 type GitHubProfile = {
   id: number
@@ -57,7 +57,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token
     },
-    // @ts-ignore
+
     async session({ session, token }) {
       return {
         ...session,
