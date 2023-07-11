@@ -51,7 +51,7 @@ export const POST = async (req: Request) => {
       id: chatId,
       lastUsedModel: model,
       userId: user.id,
-      title: shorten(prompt, 30)
+      title: shorten(prompt, 25)
     }
   })
 

@@ -8,9 +8,7 @@ export const DELETE = async (request: Request) => {
   if (!user) return new NextResponse('Unauthorized', { status: 401 })
 
   const { searchParams } = new URL(request.url)
-  console.log('searchParams: ', searchParams)
   const chatId = searchParams.get('chatId')
-  console.log('chatId: ', chatId)
 
   if (!chatId) return new NextResponse('No chatId?', { status: 400 })
 
