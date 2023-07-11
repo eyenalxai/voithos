@@ -14,13 +14,14 @@ export const useChats = () => {
       await queryClient.cancelQueries([CHATS_QUERY_KEY])
       const chats = queryClient.getQueryData([CHATS_QUERY_KEY])
 
-      queryClient.setQueryData([CHATS_QUERY_KEY], (old: Chat[] | undefined) => {
-        return id !== undefined
-          ? old
-            ? old.filter(chat => chat.id !== id)
-            : []
-          : []
-      })
+      queryClient.setQueryData(
+        [CHATS_QUERY_KEY],
+        (oldChats: Chat[] | undefined) => {
+          if (id !== undefined && oldChats !== undefined)
+            return oldChats.filter((chat: Chat) => chat.id !== id)
+          return []
+        }
+      )
 
       return { chats }
     },
