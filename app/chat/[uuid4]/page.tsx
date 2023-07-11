@@ -26,12 +26,10 @@ export default async function ChatPage({ params }: ChatPageProps) {
     }
   })
 
-  const initialMessages = chat ? chat.messages : []
-
   return (
     <Chat
       uuid4={params.uuid4}
-      initialMessages={initialMessages}
+      initialMessages={chat ? chat.messages : []}
       initialModel={chat?.lastUsedModel || 'GPT_3_5_TURBO'}
     />
   )
