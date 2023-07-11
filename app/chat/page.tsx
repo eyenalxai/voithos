@@ -2,7 +2,7 @@ import { retrieveUserFromSession } from '@/lib/session'
 import { redirect } from 'next/navigation'
 import { v4 } from 'uuid'
 
-export default async function IndexPage() {
+export default async function RedirectPage() {
   const user = await retrieveUserFromSession()
 
   if (!user) {
