@@ -18,6 +18,7 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import { ChatList } from '@/components/chat-panel/messages-display/chat-list'
+import { ChatScrollAnchor } from '@/components/chat-panel/chat-scroll-anchor'
 
 type ChatProps = {
   uuid4: string
@@ -64,7 +65,8 @@ export default function Chat({
           </SelectGroup>
         </SelectContent>
       </Select>
-      <ChatList messages={messages} isLoading={isLoading} />
+      <ChatList messages={messages} />
+      <ChatScrollAnchor trackVisibility={isLoading} />
       <ChatPanel
         isLoading={isLoading}
         stop={stop}
