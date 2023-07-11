@@ -16,21 +16,15 @@ import { Separator } from '@/components/ui/separator'
 import { IconSidebar, IconTrash } from '@/components/ui/icons'
 import { useChats } from '@/lib/hook/chats'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 export const Sidebar = () => {
   const { chats, deleteChatMutation, deleteAllChatsMutation } = useChats()
   const newChatRef = useRef<HTMLButtonElement>(null)
 
-  useEffect(() => {
-    if (newChatRef.current) {
-      newChatRef.current.focus()
-    }
-  }, [])
-
   return (
     <Sheet modal={true}>
-      <SheetTrigger ref={newChatRef} asChild>
+      <SheetTrigger asChild>
         <Button variant="ghost" className="-ml-2 h-9 w-9 p-0">
           <IconSidebar className="h-6 w-6" />
           <span className="sr-only">Toggle Sidebar</span>
@@ -39,13 +33,20 @@ export const Sidebar = () => {
       <SheetContent
         side={'left'}
         className={cn('w-[22rem]')}
-        onOpenAutoFocus={e => e.preventDefault()}
+        onCloseAutoFocus={event => event.preventDefault()}
+        onOpenAutoFocus={event => {
+          event.preventDefault()
+          if (newChatRef.current) {
+            console.log('focus - sidebar')
+            newChatRef.current.focus()
+          }
+        }}
       >
         <SheetHeader>
           <div
             className={cn('w-full', 'flex', 'justify-center', 'items-center')}
           >
-            <SheetClose asChild>
+            <SheetClose ref={newChatRef} asChild>
               <Button variant={'outline'} asChild className={cn('w-32')}>
                 <Link href={`/chat/${v4()}`}>New Chat</Link>
               </Button>
