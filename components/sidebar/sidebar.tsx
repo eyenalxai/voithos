@@ -16,19 +16,31 @@ import { Separator } from '@/components/ui/separator'
 import { IconSidebar, IconTrash } from '@/components/ui/icons'
 import { useChats } from '@/lib/hook/chats'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { useEffect, useRef } from 'react'
 
 export const Sidebar = () => {
   const { chats, deleteChatMutation, deleteAllChatsMutation } = useChats()
+  const newChatRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (newChatRef.current) {
+      newChatRef.current.focus()
+    }
+  }, [])
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
+    <Sheet modal={true}>
+      <SheetTrigger ref={newChatRef} asChild>
         <Button variant="ghost" className="-ml-2 h-9 w-9 p-0">
           <IconSidebar className="h-6 w-6" />
           <span className="sr-only">Toggle Sidebar</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side={'left'} className={cn('w-[20rem]')}>
+      <SheetContent
+        side={'left'}
+        className={cn('w-[22rem]')}
+        onOpenAutoFocus={e => e.preventDefault()}
+      >
         <SheetHeader>
           <div
             className={cn('w-full', 'flex', 'justify-center', 'items-center')}
@@ -69,11 +81,18 @@ export const Sidebar = () => {
                       <Button
                         variant={'ghost'}
                         asChild
-                        className={cn('w-full', 'flex', 'justify-start')}
+                        className={cn(
+                          'w-full',
+                          'flex',
+                          'justify-start',
+                          'p-2',
+                          'm-2'
+                        )}
                       >
                         <Link href={`/chat/${chat.id}`}>{chat.title}</Link>
                       </Button>
                       <Button
+                        className={cn('w-10', 'h-10', 'p-2', 'm-2')}
                         variant={'ghost'}
                         onClick={() => deleteChatMutation(chat.id)}
                       >
