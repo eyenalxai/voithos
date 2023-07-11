@@ -13,13 +13,15 @@ An interactive service that integrates with ChatGPT using Next.js and Prisma, of
        - `NEXTAUTH_URL`
        - `DATABASE_URL`
        - `OPENAI_API_KEY`
+       - `ALLOWED_EMAILS`
+
 3. Run `yarn install` to install the dependencies
 4. Apply the database migrations using `yarn dlx prisma migrate dev`
 5. Generate Prisma client using `yarn dlx prisma generate`
 6. Start your server by running `yarn dev`
 
 ## Features
-- Authentication via GitHub
+- Authentication via GitHub, with the capability to restrict access to specified email addresses
 - Supports multiple chat sessions
 - Allows the selection of the model (GPT-4 or GPT-3.5-Turbo)
 - Calculates token usage and the corresponding cost in USD
