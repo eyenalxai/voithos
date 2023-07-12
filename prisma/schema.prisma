@@ -30,11 +30,12 @@ model Chat {
 }
 
 model Message {
-  id      Int    @id @unique @default(autoincrement())
-  content String
-  role    Role
-  chatId  String
-  chat    Chat   @relation(fields: [chatId], references: [id])
+  id        Int      @id @unique @default(autoincrement())
+  createdAt DateTime @default(now())
+  content   String
+  role      Role
+  chatId    String
+  chat      Chat     @relation(fields: [chatId], references: [id])
 }
 
 model Usage {

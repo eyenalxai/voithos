@@ -12,11 +12,18 @@ export const GET = async () => {
       userId: user.id
     },
     orderBy: {
-      createdAt: 'asc'
+      createdAt: 'desc'
+    },
+    include: {
+      messages: {
+        orderBy: {
+          createdAt: 'desc'
+        }
+      }
     }
   })
 
-  return NextResponse.json(chats.reverse())
+  return NextResponse.json(chats)
 }
 
 export const DELETE = async () => {
