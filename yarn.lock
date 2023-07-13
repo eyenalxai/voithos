@@ -1107,10 +1107,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.4.1":
-  version: 20.4.1
-  resolution: "@types/node@npm:20.4.1"
-  checksum: 22cbcc792f2eb636fe4188778ed0f32658ab872aa7fcb9847b3fa289a42b14b9f5e30c6faec50ef3c7adbc6c2a246926e5858136bb8b10c035a3fcaa6afbeed2
+"@types/node@npm:20.4.2":
+  version: 20.4.2
+  resolution: "@types/node@npm:20.4.2"
+  checksum: 99e544ea7560d51f01f95627fc40394c24a13da8f041121a0da13e4ef0a2aa332932eaf9a5e8d0e30d1c07106e96a183be392cbba62e8cf0bf6a085d5c0f4149
   languageName: node
   linkType: hard
 
@@ -1121,12 +1121,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.6":
-  version: 18.2.6
-  resolution: "@types/react-dom@npm:18.2.6"
+"@types/react-dom@npm:18.2.7":
+  version: 18.2.7
+  resolution: "@types/react-dom@npm:18.2.7"
   dependencies:
     "@types/react": "*"
-  checksum: b56e42efab121a3a8013d2eb8c1688e6028a25ea6d33c4362d2846f0af3760b164b4d7c34846614024cfb8956cca70dd1743487f152e32ff89a00fe6fbd2be54
+  checksum: e02ea908289a7ad26053308248d2b87f6aeafd73d0e2de2a3d435947bcea0422599016ffd1c3e38ff36c42f5e1c87c7417f05b0a157e48649e4a02f21727d54f
   languageName: node
   linkType: hard
 
@@ -1295,9 +1295,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ai@npm:^2.1.18":
-  version: 2.1.18
-  resolution: "ai@npm:2.1.18"
+"ai@npm:^2.1.19":
+  version: 2.1.19
+  resolution: "ai@npm:2.1.19"
   dependencies:
     eventsource-parser: 1.0.0
     nanoid: ^3.3.6
@@ -1315,7 +1315,7 @@ __metadata:
       optional: true
     vue:
       optional: true
-  checksum: a6a9b2550ab7b32ed72a67dc7aaec1ec2dbfcfc855ceedb7591dc53f0ac71048ad6db0f0440dd4a3a66062fccb385065273615f2a91aaacd845677b25a3ff354
+  checksum: 621c53305aea5cac517277ad0668ca3d35abc6b3d2be7ec77a8e314704f79b74cab908832ce987db3edaaa3a66b14a4f76ebc9bd5212277dfdd52b7ba3238e68
   languageName: node
   linkType: hard
 
@@ -3725,12 +3725,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.259.0":
-  version: 0.259.0
-  resolution: "lucide-react@npm:0.259.0"
+"lucide-react@npm:^0.260.0":
+  version: 0.260.0
+  resolution: "lucide-react@npm:0.260.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0
-  checksum: d760b2af40e36393e2f72beca3162eb8ab264e09fba8660649b7f955ecee38d2d7242ea513f7249c3d97a937b02257c3ee20af5d82d4f77509e3f143da7d009d
+  checksum: 27e1b44ed859988a939e750ddaf0d6f1a652b87cd104314c62ec7ee26b92cfc037b9d402ce8468a7c8b3883e174a85dedb18be39ec7cddd9d215b58512ff2dc7
   languageName: node
   linkType: hard
 
@@ -4627,12 +4627,12 @@ __metadata:
     "@radix-ui/react-separator": ^1.0.3
     "@radix-ui/react-slot": ^1.0.2
     "@radix-ui/react-tooltip": ^1.0.6
-    "@types/node": 20.4.1
+    "@types/node": 20.4.2
     "@types/react": 18.2.14
-    "@types/react-dom": 18.2.6
+    "@types/react-dom": 18.2.7
     "@types/react-syntax-highlighter": ^15.5.7
     "@types/uuid": ^9.0.2
-    ai: ^2.1.18
+    ai: ^2.1.19
     autoprefixer: 10.4.14
     class-variance-authority: ^0.6.1
     clsx: ^1.2.1
@@ -4641,7 +4641,7 @@ __metadata:
     eslint-config-prettier: ^8.8.0
     eslint-plugin-tailwindcss: ^3.13.0
     gpt-tokenizer: ^2.1.1
-    lucide-react: ^0.259.0
+    lucide-react: ^0.260.0
     next: 13.4.9
     next-auth: ^4.22.1
     next-themes: ^0.2.1

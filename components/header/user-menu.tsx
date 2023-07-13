@@ -11,6 +11,8 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { User } from '@prisma/client'
+import { IconProfiles } from '@/components/ui/icons'
+import { cn } from '@/lib/utils'
 
 type UserMenuProps = {
   user: User
@@ -29,7 +31,9 @@ export function UserMenu({
     <div className="flex items-center justify-between">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost">{user.username}</Button>
+          <Button variant="ghost">
+            <IconProfiles className={cn('w-5', 'h-5')} />
+          </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start" className="w-[180px]">
           <DropdownMenuItem className="flex-col items-start">
