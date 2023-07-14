@@ -15,8 +15,8 @@ export const metadata = {
     url: process.env.NEXT_PUBLIC_BASE_URL
   },
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#020617' }
+    { media: '(prefers-color-scheme: light)', color: '0 0% 100%' },
+    { media: '(prefers-color-scheme: dark)', color: '222.2 84% 4.9%' }
   ]
 }
 
