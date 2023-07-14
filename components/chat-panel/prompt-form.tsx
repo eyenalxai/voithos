@@ -42,6 +42,7 @@ export function PromptForm({
           return
         }
         setInput('')
+        inputRef.current?.blur()
         await onSubmit(input)
       }}
       ref={formRef}
