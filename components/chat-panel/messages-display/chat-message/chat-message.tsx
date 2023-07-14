@@ -15,7 +15,16 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
       {...props}
     >
       <ChatMessageAvatar message={message} />
-      <div className="ml-4 flex-1 space-y-2 overflow-hidden px-1">
+      <div
+        className={cn(
+          'ml-4',
+          'flex-1',
+          'space-y-2',
+          'overflow-hidden',
+          'px-1',
+          'whitespace-pre'
+        )}
+      >
         <ChatMessageContent message={message} />
       </div>
     </div>

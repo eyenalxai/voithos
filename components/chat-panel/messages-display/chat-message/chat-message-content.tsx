@@ -3,6 +3,7 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import { MemoizedReactMarkdown } from '@/components/chat-panel/messages-display/markdown'
 import { CodeBlock } from '@/components/chat-panel/messages-display/codeblock'
+import { cn } from '@/lib/utils'
 
 type ChatMessageContentProps = {
   message: Message
@@ -12,7 +13,13 @@ export function ChatMessageContent({ message }: ChatMessageContentProps) {
   if (message.role === 'assistant') {
     return (
       <MemoizedReactMarkdown
-        className="prose dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 break-words"
+        className={cn(
+          'prose',
+          'dark:prose-invert',
+          'prose-p:leading-relaxed',
+          'prose-pre:p-0',
+          'break-words'
+        )}
         remarkPlugins={[remarkGfm, remarkMath]}
         components={{
           p({ children }) {
