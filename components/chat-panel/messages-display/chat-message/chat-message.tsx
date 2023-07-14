@@ -22,7 +22,7 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
           'space-y-2',
           'overflow-hidden',
           'px-1',
-          'whitespace-pre'
+          'whitespace-pre-wrap'
         )}
       >
         <ChatMessageContent message={message} />
