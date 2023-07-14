@@ -57,7 +57,12 @@ export const Sidebar = () => {
           <div className={cn('flex', 'flex-col', 'justify-between', 'h-full')}>
             <div>
               <Separator className={cn('my-2')} />
-              <ScrollArea className={cn('h-[calc(100vh-10rem)]')}>
+              <ScrollArea
+                className={cn(
+                  'h-[calc(100vh-15rem)]',
+                  'md:h-[calc(100vh-10rem)]'
+                )}
+              >
                 <div
                   className={cn(
                     'flex',
@@ -104,7 +109,7 @@ export const Sidebar = () => {
                 </div>
               </ScrollArea>
             </div>
-            <SheetFooter className={cn('mb-10')}>
+            <SheetFooter className={cn('mb-24', 'md:mb-10')}>
               <Button
                 variant={'outline'}
                 onClick={() => deleteAllChatsMutation()}
