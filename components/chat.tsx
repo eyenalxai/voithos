@@ -2,7 +2,6 @@
 
 import { useChat } from 'ai/react'
 import { ChatGPTModel, Message } from '@prisma/client'
-import { useQueryClient } from 'react-query'
 import { CHATS_QUERY_KEY } from '@/lib/constants'
 import { mapMessages } from '@/lib/mapping'
 import { ChatPanel } from '@/components/chat-panel/chat-panel'
@@ -19,6 +18,7 @@ import {
 } from '@/components/ui/select'
 import { ChatList } from '@/components/chat-panel/messages-display/chat-list'
 import { ChatScrollAnchor } from '@/components/chat-panel/chat-scroll-anchor'
+import { useQueryClient } from '@tanstack/react-query'
 
 type ChatProps = {
   uuid4: string
