@@ -10,23 +10,30 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { User } from '@prisma/client'
 import { IconProfiles } from '@/components/ui/icons'
 import { cn } from '@/lib/utils'
+import { useQuery } from '@tanstack/react-query'
+import { USAGE_QUERY_KEY } from '@/lib/constants'
+import { getUsage } from '@/lib/fetch/usage'
+import { User } from '@prisma/client'
 
 type UserMenuProps = {
   user: User
-  totalSpent: number | null
-  totalSpentThisMonth: number | null
-  totalSpentLastMonth: number | null
 }
 
-export function UserMenu({
-  user,
-  totalSpent,
-  totalSpentThisMonth,
-  totalSpentLastMonth
-}: UserMenuProps) {
+export function UserMenu({ user }: UserMenuProps) {
+  const { data: usage } = useQuery([USAGE_QUERY_KEY], getUsage, {
+    refetchInterval: 30 * 1000,
+    refetchOnWindowFocus: true,
+    refetchOnMount: true
+  })
+
+  if (!usage) {
+    return null
+  }
+
+  const { totalSpentThisMonth, totalSpentLastMonth, totalSpent } = usage
+
   return (
     <div className="flex items-center justify-between">
       <DropdownMenu>

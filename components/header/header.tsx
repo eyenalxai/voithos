@@ -1,7 +1,6 @@
 import { cn } from '@/lib/utils'
 import { retrieveUserFromSession } from '@/lib/session'
 import { UserMenu } from '@/components/header/user-menu'
-import { getUsage } from '@/lib/actions'
 import { Sidebar } from '@/components/sidebar/sidebar'
 
 export const Header = async () => {
@@ -10,9 +9,6 @@ export const Header = async () => {
   if (!user) {
     return null
   }
-
-  const { totalSpent, totalSpentThisMonth, totalSpentLastMonth } =
-    await getUsage(user.id)
 
   return (
     <header
@@ -35,12 +31,7 @@ export const Header = async () => {
       )}
     >
       <Sidebar />
-      <UserMenu
-        user={user}
-        totalSpent={totalSpent}
-        totalSpentThisMonth={totalSpentThisMonth}
-        totalSpentLastMonth={totalSpentLastMonth}
-      />
+      <UserMenu user={user} />
     </header>
   )
 }

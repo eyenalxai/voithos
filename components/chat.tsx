@@ -2,7 +2,7 @@
 
 import { useChat } from 'ai/react'
 import { ChatGPTModel, Message } from '@prisma/client'
-import { CHATS_QUERY_KEY } from '@/lib/constants'
+import { CHATS_QUERY_KEY, USAGE_QUERY_KEY } from '@/lib/constants'
 import { mapMessages } from '@/lib/mapping'
 import { ChatPanel } from '@/components/chat-panel/chat-panel'
 import { cn } from '@/lib/utils'
@@ -42,10 +42,13 @@ export default function Chat({
       chatId: uuid4,
       model: model
     },
-    onFinish: () =>
+    onFinish: _message => {
       queryClient
         .invalidateQueries([CHATS_QUERY_KEY])
         .then(() => queryClient.refetchQueries([CHATS_QUERY_KEY]))
+        .then(() => queryClient.invalidateQueries([USAGE_QUERY_KEY]))
+        .then(() => queryClient.refetchQueries([USAGE_QUERY_KEY]))
+    }
   })
 
   return (

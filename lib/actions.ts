@@ -39,7 +39,13 @@ export const saveMessage = async (
   })
 }
 
-export const getUsage = async (userId: number) => {
+export type Usage = {
+  totalSpent: number | null
+  totalSpentThisMonth: number | null
+  totalSpentLastMonth: number | null
+}
+
+export const getUsage = async (userId: number): Promise<Usage> => {
   const totalSpent = await prisma.usage.aggregate({
     where: {
       userId: userId

@@ -1,6 +1,7 @@
 import { ChatCompletionRequestMessage } from 'openai-edge'
 
 export const CHATS_QUERY_KEY = 'chats'
+export const USAGE_QUERY_KEY = 'usage'
 
 const SYSTEM_MESSAGE_CONTENT =
   'Be concise and brief, avoid unnecessary explanations, eliminate repetitions, and if requested to edit something, send only the changes'

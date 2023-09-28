@@ -37,7 +37,6 @@ export const Sidebar = () => {
         onOpenAutoFocus={event => {
           event.preventDefault()
           if (newChatRef.current) {
-            console.log('focus - sidebar')
             newChatRef.current.focus()
           }
         }}
