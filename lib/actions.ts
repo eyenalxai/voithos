@@ -1,15 +1,24 @@
 import { ChatGPTModel, Role } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { countTokens, getTokenCost } from '@/lib/pricing'
+import { ChatCompletionRequestMessage } from 'openai-edge'
 
 export const saveMessage = async (
   userId: number,
   chatId: string,
   content: string,
   role: Role,
-  model: ChatGPTModel
+  model: ChatGPTModel,
+  chatContext?: ChatCompletionRequestMessage[]
 ) => {
-  const tokensCount = countTokens(content)
+  const tokensCount =
+    chatContext === undefined
+      ? countTokens(content)
+      : chatContext.reduce((total, message) => {
+          const tokens = countTokens(message.content)
+          return total + tokens
+        }, 0)
+
   const priceUSD = getTokenCost(tokensCount, role, model)
   await prisma.message.create({
     data: {

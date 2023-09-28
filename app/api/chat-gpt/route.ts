@@ -29,10 +29,15 @@ export const POST = async (req: Request) => {
 
   if (!prompt) return new NextResponse('No prompt?', { status: 400 })
 
+  const chatContext = [
+    SYSTEM_MESSAGE,
+    ...removeMessagesToFitLimit(messages, model)
+  ]
+
   const response = await openai.createChatCompletion({
     model: enumToModelName(model),
     stream: true,
-    messages: [SYSTEM_MESSAGE, ...removeMessagesToFitLimit(messages, model)]
+    messages: chatContext
   })
 
   const chat = await prisma.chat.upsert({
@@ -57,7 +62,7 @@ export const POST = async (req: Request) => {
 
   const stream = OpenAIStream(response, {
     onStart: async () =>
-      await saveMessage(user.id, chat.id, prompt, 'USER', model),
+      await saveMessage(user.id, chat.id, prompt, 'USER', model, chatContext),
     onCompletion: async (completion: string) =>
       await saveMessage(user.id, chatId, completion, 'ASSISTANT', model)
   })

@@ -10,6 +10,7 @@ export const GPT_35_TURBO_OUTPUT = 0.000002
 export const getTokenCost = (
   tokens: number,
   role: Role,
+
   model: ChatGPTModel
 ) => {
   if (model === 'GPT_3_5_TURBO') {
