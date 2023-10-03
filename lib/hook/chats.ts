@@ -1,3 +1,5 @@
+'use client'
+
 import { CHATS_QUERY_KEY } from '@/lib/constants'
 import { deleteAllChats, deleteChat, getChats } from '@/lib/fetch/chats'
 import { Chat } from '@prisma/client'

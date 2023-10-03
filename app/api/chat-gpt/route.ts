@@ -8,7 +8,7 @@ import { ChatCompletionRequestMessage } from 'openai-edge'
 import { ChatGPTModel } from '@prisma/client'
 import { removeMessagesToFitLimit } from '@/lib/model-limits'
 import { enumToModelName, shorten } from '@/lib/utils'
-import { SYSTEM_MESSAGE } from '@/lib/constants'
+import { SYSTEM_MESSAGE_CONTENT } from '@/lib/constants'
 
 export const POST = async (req: Request) => {
   const user = await retrieveUserFromSession()
@@ -29,8 +29,19 @@ export const POST = async (req: Request) => {
 
   if (!prompt) return new NextResponse('No prompt?', { status: 400 })
 
+  const userSystemMessage = await prisma.systemMessage.findUnique({
+    where: {
+      userId: user.id
+    }
+  })
+
+  const systemMessage: ChatCompletionRequestMessage = {
+    content: userSystemMessage?.content ?? SYSTEM_MESSAGE_CONTENT,
+    role: 'system'
+  }
+
   const chatContext = [
-    SYSTEM_MESSAGE,
+    systemMessage,
     ...removeMessagesToFitLimit(messages, model)
   ]
 
