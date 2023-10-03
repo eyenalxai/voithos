@@ -33,6 +33,8 @@ export function SystemMessageForm() {
 
   if (!systemMessage) return null
 
+  const errorMessage = errors.content?.message?.toString()
+
   return (
     <form
       className="mt-12"
@@ -53,12 +55,14 @@ export function SystemMessageForm() {
         >
           Save
         </Button>
-        {errors.content?.message !== undefined && (
+        {(errorMessage || isError) && (
           <>
             <IconBxsErrorCircle className={cn('w-8', 'h-8', 'fill-red-500')} />
-            <p className={cn('text-red-500', 'mx-4', 'text-sm')}>
-              {errors.content.message.toString()}
-            </p>
+            {errorMessage !== undefined && (
+              <p className={cn('text-red-500', 'mx-4', 'text-sm')}>
+                {errorMessage}
+              </p>
+            )}
           </>
         )}
         {isSuccess && <IconCheckCircle className={cn('w-8', 'h-8')} />}
