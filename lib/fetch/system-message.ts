@@ -1,5 +1,5 @@
 import { fetcher } from '@/lib/fetch/fetcher'
-import { Chat, SystemMessage } from '@prisma/client'
+import { SystemMessage } from '@prisma/client'
 
 export const getSystemMessage = async () => {
   return fetcher<SystemMessage>('/api/system-message')

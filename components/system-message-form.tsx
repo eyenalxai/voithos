@@ -10,7 +10,7 @@ import { useSystemMessage } from '@/lib/hook/system-message'
 import { cn } from '@/lib/utils'
 
 const schema = z.object({
-  content: z.string()
+  content: z.string().min(5).max(1024)
 })
 
 export function SystemMessageForm() {
@@ -37,7 +37,11 @@ export function SystemMessageForm() {
         {...register('content')}
         defaultValue={systemMessage?.content}
       />
-      {errors.content?.message && <p>{errors.content?.message.toString()}</p>}
+      {errors.content?.message && (
+        <p className={cn('text-red-500', 'mx-4', 'my-2')}>
+          {errors.content?.message.toString()}
+        </p>
+      )}
       <Button type="submit" variant="ghost" className="m-2">
         Save
       </Button>
