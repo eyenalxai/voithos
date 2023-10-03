@@ -11,7 +11,12 @@ export const useSystemMessage = () => {
     getSystemMessage
   )
 
-  const { mutate: setSystemMessageMutation } = useMutation({
+  const {
+    mutate: setSystemMessageMutation,
+    isLoading,
+    isSuccess,
+    isError
+  } = useMutation({
     mutationFn: async (content: string) => await setSystemMessage(content),
     onMutate: async (_content: string) => {
       await queryClient.cancelQueries([SYSTEM_MESSAGE_QUERY_KEY])
@@ -39,6 +44,9 @@ export const useSystemMessage = () => {
     systemMessage,
     setSystemMessageMutation: setSystemMessageMutation as (
       content: string
-    ) => Promise<void>
+    ) => Promise<void>,
+    isLoading,
+    isSuccess,
+    isError
   }
 }
