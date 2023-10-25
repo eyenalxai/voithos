@@ -25,7 +25,7 @@ export function SystemMessageForm({
   const {
     systemMessage,
     setSystemMessageMutation,
-    isLoading,
+    isPending,
     isSuccess,
     isError
   } = useSystemMessage(initialSystemMessage)
@@ -55,7 +55,7 @@ export function SystemMessageForm({
       />
       <div className={cn('flex', 'flex-row', 'items-center')}>
         <Button
-          disabled={isLoading || errors.content !== undefined}
+          disabled={isPending || errors.content !== undefined}
           type="submit"
           variant="ghost"
           className={cn('m-2')}

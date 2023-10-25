@@ -9,24 +9,22 @@ export const useSystemMessage = (
   initialSystemMessage?: SystemMessage | null
 ) => {
   const queryClient = useQueryClient()
-  const { data: systemMessage } = useQuery(
-    [SYSTEM_MESSAGE_QUERY_KEY],
-    getSystemMessage,
-    {
-      initialData: initialSystemMessage,
-      staleTime: Infinity
-    }
-  )
+  const { data: systemMessage } = useQuery({
+    queryKey: [SYSTEM_MESSAGE_QUERY_KEY],
+    queryFn: getSystemMessage,
+    initialData: initialSystemMessage,
+    staleTime: Infinity
+  })
 
   const {
     mutate: setSystemMessageMutation,
-    isLoading,
+    isPending,
     isSuccess,
     isError
   } = useMutation({
     mutationFn: async (content: string) => await setSystemMessage(content),
     onMutate: async (_content: string) => {
-      await queryClient.cancelQueries([SYSTEM_MESSAGE_QUERY_KEY])
+      await queryClient.cancelQueries({ queryKey: [SYSTEM_MESSAGE_QUERY_KEY] })
       const oldSystemMessage = queryClient.getQueryData([
         SYSTEM_MESSAGE_QUERY_KEY
       ])
@@ -52,7 +50,7 @@ export const useSystemMessage = (
     setSystemMessageMutation: setSystemMessageMutation as (
       content: string
     ) => Promise<void>,
-    isLoading,
+    isPending,
     isSuccess,
     isError
   }

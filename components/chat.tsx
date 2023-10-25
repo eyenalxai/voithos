@@ -44,10 +44,12 @@ export default function Chat({
     },
     onFinish: _message => {
       queryClient
-        .invalidateQueries([CHATS_QUERY_KEY])
-        .then(() => queryClient.refetchQueries([CHATS_QUERY_KEY]))
-        .then(() => queryClient.invalidateQueries([USAGE_QUERY_KEY]))
-        .then(() => queryClient.refetchQueries([USAGE_QUERY_KEY]))
+        .invalidateQueries({ queryKey: [CHATS_QUERY_KEY] })
+        .then(() => queryClient.refetchQueries({ queryKey: [CHATS_QUERY_KEY] }))
+        .then(() =>
+          queryClient.invalidateQueries({ queryKey: [USAGE_QUERY_KEY] })
+        )
+        .then(() => queryClient.refetchQueries({ queryKey: [USAGE_QUERY_KEY] }))
     }
   })
 

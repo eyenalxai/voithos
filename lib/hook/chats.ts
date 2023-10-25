@@ -7,13 +7,16 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 export const useChats = () => {
   const queryClient = useQueryClient()
-  const { data: chats } = useQuery([CHATS_QUERY_KEY], getChats)
+  const { data: chats } = useQuery({
+    queryKey: [CHATS_QUERY_KEY],
+    queryFn: getChats
+  })
 
   const { mutate: deleteChatMutation } = useMutation({
     mutationFn: async (id?: string) =>
       id !== undefined ? await deleteChat(id) : await deleteAllChats(),
     onMutate: async (id?: string) => {
-      await queryClient.cancelQueries([CHATS_QUERY_KEY])
+      await queryClient.cancelQueries({ queryKey: [CHATS_QUERY_KEY] })
       const chats = queryClient.getQueryData([CHATS_QUERY_KEY])
 
       queryClient.setQueryData(

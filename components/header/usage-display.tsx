@@ -5,7 +5,9 @@ import { USAGE_QUERY_KEY } from '@/lib/constants'
 import { getUsage } from '@/lib/fetch/usage'
 
 export function UsageDisplay() {
-  const { data: usage } = useQuery([USAGE_QUERY_KEY], getUsage, {
+  const { data: usage } = useQuery({
+    queryKey: [USAGE_QUERY_KEY],
+    queryFn: getUsage,
     refetchInterval: 30 * 1000,
     refetchOnWindowFocus: true,
     refetchOnMount: true
