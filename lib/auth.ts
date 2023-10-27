@@ -2,6 +2,8 @@ import GitHubProvider from 'next-auth/providers/github'
 import { NextAuthOptions } from 'next-auth'
 import { JWT } from '@/lib/session'
 import { saveUser } from '@/lib/query/user'
+import { authConfig } from '@/lib/config/auth'
+import { appConfig } from '@/lib/config/openai'
 
 type GitHubProfile = {
   id: number
@@ -12,8 +14,8 @@ type GitHubProfile = {
 export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_ID!,
-      clientSecret: process.env.GITHUB_SECRET!
+      clientId: authConfig.GITHUB_ID,
+      clientSecret: authConfig.GITHUB_SECRET
     })
   ],
   jwt: {
@@ -29,7 +31,8 @@ export const authOptions: NextAuthOptions = {
     // @ts-ignore
     async jwt({ token, profile }: { token: JWT; profile?: GitHubProfile }) {
       if (profile) {
-        const allowedEmails = JSON.parse(process.env.ALLOWED_EMAILS || '[]')
+        const allowedEmails = appConfig.ADMIN_EMAILS
+        console.log(allowedEmails)
         if (
           allowedEmails.length > 0 &&
           !allowedEmails.includes(profile.email)
