@@ -1,4 +1,4 @@
-import { Message as DatabaseMessage } from '@prisma/client'
+import { Message as DatabaseMessage } from '@/lib/schema'
 import { Message } from 'ai'
 
 export const mapMessages: (messages: DatabaseMessage[]) => Message[] = (

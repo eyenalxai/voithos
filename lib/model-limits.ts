@@ -1,6 +1,6 @@
-import { ChatGPTModel } from '@prisma/client'
 import { ChatCompletionRequestMessage } from 'openai-edge'
 import { countTokens } from '@/lib/pricing'
+import { ChatGPTModel } from '@/lib/schema'
 
 const LIMIT_MODIFIER = 0.65
 
@@ -8,8 +8,8 @@ export const GPT_4_TOKENS_LIMIT = 8000
 export const GPT_3_5_TURBO_TOKENS_LIMIT = 4000
 
 export const MODEL_TOKENS_LIMITS: Record<ChatGPTModel, number> = {
-  GPT_3_5_TURBO: GPT_3_5_TURBO_TOKENS_LIMIT,
-  GPT_4: GPT_4_TOKENS_LIMIT
+  gpt_3_5_turbo: GPT_3_5_TURBO_TOKENS_LIMIT,
+  gpt_4: GPT_4_TOKENS_LIMIT
 }
 
 export const removeMessagesToFitLimit = (

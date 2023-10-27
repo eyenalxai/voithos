@@ -1,7 +1,7 @@
 import { getServerSession, Session as NextAuthSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
 import { JWT as NextAuthJWT } from 'next-auth/jwt'
+import { getUserById } from '@/lib/query/user'
 
 export interface Session extends NextAuthSession {
   id: number
@@ -16,7 +16,7 @@ export const retrieveUserFromSession = async () => {
 
   if (!session?.id) return null
 
-  const user = await prisma.user.findUnique({ where: { id: session.id } })
+  const user = await getUserById(session.id)
 
   if (!user) return null
 

@@ -2,8 +2,8 @@
 
 import { CHATS_QUERY_KEY } from '@/lib/constants'
 import { deleteAllChats, deleteChat, getChats } from '@/lib/fetch/chats'
-import { Chat } from '@prisma/client'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Chat } from '@/lib/schema'
 
 export const useChats = () => {
   const queryClient = useQueryClient()

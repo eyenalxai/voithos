@@ -1,7 +1,6 @@
 'use client'
 
 import { useChat } from 'ai/react'
-import { ChatGPTModel, Message } from '@prisma/client'
 import { CHATS_QUERY_KEY, USAGE_QUERY_KEY } from '@/lib/constants'
 import { mapMessages } from '@/lib/mapping'
 import { ChatPanel } from '@/components/chat-panel/chat-panel'
@@ -19,6 +18,7 @@ import {
 import { ChatList } from '@/components/chat-panel/messages-display/chat-list'
 import { ChatScrollAnchor } from '@/components/chat-panel/chat-scroll-anchor'
 import { useQueryClient } from '@tanstack/react-query'
+import { ChatGPTModel, Message } from '@/lib/schema'
 
 type ChatProps = {
   uuid4: string
@@ -42,7 +42,7 @@ export default function Chat({
       chatId: uuid4,
       model: model
     },
-    onFinish: _message => {
+    onFinish: () => {
       queryClient
         .invalidateQueries({ queryKey: [CHATS_QUERY_KEY] })
         .then(() => queryClient.refetchQueries({ queryKey: [CHATS_QUERY_KEY] }))
@@ -65,8 +65,10 @@ export default function Chat({
         <SelectContent>
           <SelectGroup>
             <SelectLabel>GPT Models</SelectLabel>
-            <SelectItem value="GPT_3_5_TURBO">GPT 3.5 Turbo</SelectItem>
-            <SelectItem value="GPT_4">GPT 4</SelectItem>
+            <SelectItem value={'gpt_3_5_turbo' as ChatGPTModel}>
+              GPT 3.5 Turbo
+            </SelectItem>
+            <SelectItem value={'gpt_4' as ChatGPTModel}>GPT 4</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

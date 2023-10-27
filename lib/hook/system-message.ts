@@ -3,7 +3,7 @@
 import { SYSTEM_MESSAGE_QUERY_KEY } from '@/lib/constants'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getSystemMessage, setSystemMessage } from '@/lib/fetch/system-message'
-import { SystemMessage } from '@prisma/client'
+import { SystemMessage } from '@/lib/schema'
 
 export const useSystemMessage = (
   initialSystemMessage?: SystemMessage | null

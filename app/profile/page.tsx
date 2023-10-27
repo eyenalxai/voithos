@@ -1,7 +1,7 @@
 import { retrieveUserFromSession } from '@/lib/session'
 import { redirect } from 'next/navigation'
 import { SystemMessageForm } from '@/components/system-message-form'
-import { prisma } from '@/lib/prisma'
+import { getSystemMessageByUserId } from '@/lib/query/system-message'
 
 export default async function ProfilePage() {
   const user = await retrieveUserFromSession()
@@ -10,11 +10,7 @@ export default async function ProfilePage() {
     redirect('/sign-in')
   }
 
-  const initialSystemMessage = await prisma.systemMessage.findUnique({
-    where: {
-      userId: user.id
-    }
-  })
+  const initialSystemMessage = await getSystemMessageByUserId(user.id)
 
   return <SystemMessageForm initialSystemMessage={initialSystemMessage} />
 }

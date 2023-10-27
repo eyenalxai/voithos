@@ -12,9 +12,9 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { IconProfiles } from '@/components/ui/icons'
 import { cn } from '@/lib/utils'
-import { User } from '@prisma/client'
 import Link from 'next/link'
 import { UsageDisplay } from '@/components/header/usage-display'
+import { User } from '@/lib/schema'
 
 type UserMenuProps = {
   user: User

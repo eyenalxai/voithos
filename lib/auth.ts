@@ -1,7 +1,7 @@
 import GitHubProvider from 'next-auth/providers/github'
 import { NextAuthOptions } from 'next-auth'
-import { prisma } from '@/lib/prisma'
 import { JWT } from '@/lib/session'
+import { saveUser } from '@/lib/query/user'
 
 type GitHubProfile = {
   id: number
@@ -37,22 +37,14 @@ export const authOptions: NextAuthOptions = {
           return Promise.reject(new Error('Not allowed'))
         }
 
-        const user = await prisma.user.upsert({
-          where: { id: profile.id },
-          update: {
-            username: profile.login,
-            email: profile.email
-          },
-          create: {
-            id: profile.id,
-            username: profile.login,
-            email: profile.email
-          }
+        const user = await saveUser({
+          username: profile.login,
+          email: profile.email
         })
 
         token = {
           ...token,
-          id: user.id
+          id: user[0].id
         }
       }
       return token

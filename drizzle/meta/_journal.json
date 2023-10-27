@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1698238361423,
+      "tag": "0000_plain_nighthawk",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1698239644715,
+      "tag": "0001_puzzling_unus",
+      "breakpoints": true
+    }
+  ]
+}

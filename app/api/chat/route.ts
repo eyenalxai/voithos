@@ -1,6 +1,6 @@
 import { retrieveUserFromSession } from '@/lib/session'
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { deleteChatById } from '@/lib/query/chat'
 
 export const DELETE = async (request: Request) => {
   const user = await retrieveUserFromSession()
@@ -12,19 +12,7 @@ export const DELETE = async (request: Request) => {
 
   if (!chatId) return new NextResponse('No chatId?', { status: 400 })
 
-  await prisma.message.deleteMany({
-    where: {
-      chat: {
-        id: chatId
-      }
-    }
-  })
-
-  await prisma.chat.delete({
-    where: {
-      id: chatId
-    }
-  })
+  await deleteChatById(chatId)
 
   return NextResponse.json({ success: true })
 }

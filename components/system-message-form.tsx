@@ -9,14 +9,14 @@ import { Textarea } from '@/components/ui/textarea'
 import { useSystemMessage } from '@/lib/hook/system-message'
 import { cn } from '@/lib/utils'
 import { IconBxsErrorCircle, IconCheckCircle } from '@/components/ui/icons'
-import { SystemMessage } from '@prisma/client'
+import { SystemMessage } from '@/lib/schema'
 
 const schema = z.object({
   content: z.string().min(5).max(1024)
 })
 
 type SystemMessageFormProps = {
-  initialSystemMessage: SystemMessage | null
+  initialSystemMessage: SystemMessage | undefined
 }
 
 export function SystemMessageForm({

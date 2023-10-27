@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server'
 import { retrieveUserFromSession } from '@/lib/session'
 
-import { prisma } from '@/lib/prisma'
 import { SYSTEM_MESSAGE_CONTENT } from '@/lib/constants'
+import {
+  getSystemMessageByUserId,
+  upsertUserSystemMessage
+} from '@/lib/query/system-message'
 
 export const POST = async (req: Request) => {
   const user = await retrieveUserFromSession()
@@ -11,18 +14,7 @@ export const POST = async (req: Request) => {
 
   const { content }: { content: string } = await req.json()
 
-  await prisma.systemMessage.upsert({
-    where: {
-      userId: user.id
-    },
-    update: {
-      content: content
-    },
-    create: {
-      userId: user.id,
-      content: content
-    }
-  })
+  await upsertUserSystemMessage(content, user.id)
 
   return NextResponse.json({ success: true })
 }
@@ -32,11 +24,7 @@ export const GET = async () => {
 
   if (!user) return new NextResponse('Unauthorized', { status: 401 })
 
-  const systemMessage = await prisma.systemMessage.findUnique({
-    where: {
-      userId: user.id
-    }
-  })
+  const systemMessage = await getSystemMessageByUserId(user.id)
 
   return NextResponse.json({
     content: systemMessage?.content ?? SYSTEM_MESSAGE_CONTENT

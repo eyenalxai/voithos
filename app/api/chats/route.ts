@@ -1,27 +1,13 @@
 import { retrieveUserFromSession } from '@/lib/session'
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { deleteAllChatsByUserId, getChatsByUserId } from '@/lib/query/chat'
 
 export const GET = async () => {
   const user = await retrieveUserFromSession()
 
   if (!user) return new NextResponse('Unauthorized', { status: 401 })
 
-  const chats = await prisma.chat.findMany({
-    where: {
-      userId: user.id
-    },
-    orderBy: {
-      createdAt: 'desc'
-    },
-    include: {
-      messages: {
-        orderBy: {
-          createdAt: 'desc'
-        }
-      }
-    }
-  })
+  const chats = await getChatsByUserId(user.id)
 
   return NextResponse.json(chats)
 }
@@ -33,19 +19,7 @@ export const DELETE = async () => {
     return new NextResponse('Unauthorized', { status: 401 })
   }
 
-  await prisma.message.deleteMany({
-    where: {
-      chat: {
-        userId: user.id
-      }
-    }
-  })
-
-  await prisma.chat.deleteMany({
-    where: {
-      userId: user.id
-    }
-  })
+  await deleteAllChatsByUserId(user.id)
 
   return NextResponse.json({ success: true })
 }
