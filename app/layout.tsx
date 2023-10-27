@@ -4,6 +4,14 @@ import { cn } from '@/lib/utils'
 import { ReactNode } from 'react'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/header/header'
+import { Viewport } from 'next'
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '0 0% 100%' },
+    { media: '(prefers-color-scheme: dark)', color: '222.2 84% 4.9%' }
+  ]
+}
 
 export const metadata = {
   title: 'Voithos',
@@ -13,11 +21,7 @@ export const metadata = {
     description: 'Voithos | Chat GPT',
     type: 'website',
     url: process.env.NEXT_PUBLIC_BASE_URL
-  },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '0 0% 100%' },
-    { media: '(prefers-color-scheme: dark)', color: '222.2 84% 4.9%' }
-  ]
+  }
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
