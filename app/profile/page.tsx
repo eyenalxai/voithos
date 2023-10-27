@@ -2,7 +2,7 @@ import { retrieveUserFromSession } from '@/lib/session'
 import { redirect } from 'next/navigation'
 import { SystemMessageForm } from '@/components/system-message-form'
 import { getSystemMessageByUserId } from '@/lib/query/system-message'
-import { AllowedUsers } from '@/components/allowed-users'
+import { AllowedUsersDisplay } from '@/components/allowed-users/allowed-users-display'
 import { cn } from '@/lib/utils'
 import { getAllowedUsers } from '@/lib/query/allowed-user'
 import { isUserAdmin } from '@/lib/permissions'
@@ -23,7 +23,7 @@ export default async function ProfilePage() {
   return (
     <div className={cn('flex', 'flex-col', 'gap-12')}>
       <SystemMessageForm initialSystemMessage={initialSystemMessage} />
-      <AllowedUsers isAdmin={isAdmin} allowedUsers={allowedUsers} />
+      <AllowedUsersDisplay isAdmin={isAdmin} allowedUsers={allowedUsers} />
     </div>
   )
 }

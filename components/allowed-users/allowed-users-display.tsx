@@ -10,7 +10,7 @@ type AllowedUsersFormProps = {
   allowedUsers: AllowedUser[]
 }
 
-export const AllowedUsers = ({
+export const AllowedUsersDisplay = ({
   isAdmin,
   allowedUsers
 }: AllowedUsersFormProps) => {
@@ -21,6 +21,7 @@ export const AllowedUsers = ({
       {allowedUsers.map(allowedUser => {
         return (
           <div
+            key={allowedUser.id}
             className={cn(
               'flex',
               'flex-row',
