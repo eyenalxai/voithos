@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { getAllowedUsers } from '@/lib/query/allowed-user'
 import { isUserAdmin } from '@/lib/permissions'
 
-export default async function ProfilePage() {
+export default async function SettingsPage() {
   const user = await retrieveUserFromSession()
 
   if (!user) {

@@ -16,7 +16,7 @@ export const saveSystemMessage = async (content: string) => {
     redirect('/sign-in')
   }
   await upsertUserSystemMessage(content, user.id)
-  revalidatePath('/profile')
+  revalidatePath('/settings')
 }
 
 export const addAllowedUser = async (email: string) => {
@@ -27,7 +27,7 @@ export const addAllowedUser = async (email: string) => {
   }
 
   await upsertAllowedUser(email)
-  revalidatePath('/profile')
+  revalidatePath('/settings')
 }
 
 export const deleteAllowedUser = async (allowedUserId: number) => {
@@ -38,5 +38,5 @@ export const deleteAllowedUser = async (allowedUserId: number) => {
   }
 
   await deleteAllowedUserById(allowedUserId)
-  revalidatePath('/profile')
+  revalidatePath('/settings')
 }

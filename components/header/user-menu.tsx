@@ -6,15 +6,13 @@ import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { IconProfiles } from '@/components/ui/icons'
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
 import { UsageDisplay } from '@/components/header/usage-display'
 import { User } from '@/lib/schema'
+import Link from 'next/link'
 
 type UserMenuProps = {
   user: User
@@ -29,25 +27,40 @@ export function UserMenu({ user }: UserMenuProps) {
             <IconProfiles className={cn('w-5', 'h-5')} />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-[180px]">
-          <DropdownMenuItem className="flex-col items-start">
-            <Link href={`/profile`}>
-              <div className="text-xs font-medium">{user.username}</div>
-              <div className="text-xs text-slate-500">{user.email}</div>
-              <UsageDisplay />
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem
+        <DropdownMenuContent
+          align="start"
+          className={cn(
+            'flex',
+            'flex-col',
+            'justify-center',
+            'gap-2',
+            'w-[200px]',
+            'p-2'
+          )}
+        >
+          <div
+            className={cn('flex', 'flex-col', 'justify-center', 'm-2', 'w-fit')}
+          >
+            <div className="text-sm font-medium">{user.username}</div>
+            <div className="text-sm text-slate-500">{user.email}</div>
+            <UsageDisplay />
+          </div>
+
+          <Button asChild variant={'outline'} className={'mx-4'}>
+            <Link href={`/settings`}>Settings</Link>
+          </Button>
+
+          <Button
+            className={'mx-4'}
+            variant={'ghost'}
             onClick={() =>
               signOut({
                 callbackUrl: '/'
               })
             }
-            className="text-xs"
           >
             Log Out
-          </DropdownMenuItem>
+          </Button>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
