@@ -1,9 +1,9 @@
 import { createEnv } from '@t3-oss/env-core'
 import * as z from 'zod'
 
-export const appConfig = createEnv({
+export const openAiConfig = createEnv({
   server: {
-    ADMIN_EMAILS: z.string().transform(val => JSON.parse(val))
+    OPENAI_API_KEY: z.string()
   },
   runtimeEnv: process.env
 })

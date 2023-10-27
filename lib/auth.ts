@@ -3,7 +3,7 @@ import { NextAuthOptions } from 'next-auth'
 import { JWT } from '@/lib/session'
 import { saveUser } from '@/lib/query/user'
 import { authConfig } from '@/lib/config/auth'
-import { appConfig } from '@/lib/config/openai'
+import { appConfig } from '@/lib/config/app'
 
 type GitHubProfile = {
   id: number
