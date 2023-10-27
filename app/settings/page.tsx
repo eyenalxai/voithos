@@ -6,6 +6,7 @@ import { AllowedUsersDisplay } from '@/components/allowed-users/allowed-users-di
 import { cn } from '@/lib/utils'
 import { getAllowedUsers } from '@/lib/query/allowed-user'
 import { isUserAdmin } from '@/lib/permissions'
+import { GlobalUsage } from '@/components/global-usage'
 
 export default async function SettingsPage() {
   const user = await retrieveUserFromSession()
@@ -24,6 +25,7 @@ export default async function SettingsPage() {
     <div className={cn('flex', 'flex-col', 'gap-12', 'my-8')}>
       <SystemMessageForm initialSystemMessage={initialSystemMessage} />
       <AllowedUsersDisplay isAdmin={isAdmin} allowedUsers={allowedUsers} />
+      <GlobalUsage isAdmin={isAdmin} />
     </div>
   )
 }

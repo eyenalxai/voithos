@@ -20,3 +20,7 @@ export const getUserById = async (userId: number) => {
     where: eq(users.id, userId)
   })
 }
+
+export const getAllUsers = async () => {
+  return db.query.users.findMany()
+}
