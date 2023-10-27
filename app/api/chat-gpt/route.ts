@@ -5,7 +5,7 @@ import { retrieveUserFromSession } from '@/lib/session'
 import { ChatCompletionRequestMessage } from 'openai-edge'
 import { removeMessagesToFitLimit } from '@/lib/model-limits'
 import { enumToModelName, shorten } from '@/lib/utils'
-import { SYSTEM_MESSAGE_CONTENT } from '@/lib/constants'
+import { DEFAULT_SYSTEM_MESSAGE_CONTENT } from '@/lib/constants'
 import { ChatGPTModel } from '@/lib/schema'
 import { saveMessage } from '@/lib/query/message'
 import { getSystemMessageByUserId } from '@/lib/query/system-message'
@@ -33,7 +33,7 @@ export const POST = async (req: Request) => {
   const userSystemMessage = await getSystemMessageByUserId(user.id)
 
   const systemMessage: ChatCompletionRequestMessage = {
-    content: userSystemMessage?.content ?? SYSTEM_MESSAGE_CONTENT,
+    content: userSystemMessage?.content ?? DEFAULT_SYSTEM_MESSAGE_CONTENT,
     role: 'system'
   }
 

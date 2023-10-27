@@ -1,5 +1,5 @@
 import type { Config } from 'drizzle-kit'
-import { databaseConfig } from '@/lib/config/database'
+import { databaseConfig } from './lib/config/database'
 
 export default {
   schema: './lib/schema.ts',

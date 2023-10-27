@@ -15,6 +15,13 @@
       "when": 1698239644715,
       "tag": "0001_puzzling_unus",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1698428540647,
+      "tag": "0002_lazy_the_liberteens",
+      "breakpoints": true
     }
   ]
 }

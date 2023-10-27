@@ -1,0 +1,1 @@
+ALTER TABLE "system_messages" ADD CONSTRAINT "system_messages_user_id_unique" UNIQUE("user_id");

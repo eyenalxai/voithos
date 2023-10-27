@@ -96,7 +96,9 @@ export const usageRelations = relations(usage, ({ one }) => ({
 export const systemMessages = pgTable('system_messages', {
   id: serial('id').primaryKey(),
   content: varchar('content').notNull(),
-  userId: integer('user_id').references(() => users.id)
+  userId: integer('user_id')
+    .references(() => users.id)
+    .unique()
 })
 
 export type SystemMessage = typeof systemMessages.$inferSelect

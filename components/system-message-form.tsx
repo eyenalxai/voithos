@@ -5,13 +5,20 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-
-import { useSystemMessage } from '@/lib/hook/system-message'
-import { cn } from '@/lib/utils'
-import { IconBxsErrorCircle, IconCheckCircle } from '@/components/ui/icons'
 import { SystemMessage } from '@/lib/schema'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from '@/components/ui/form'
+import { DEFAULT_SYSTEM_MESSAGE_CONTENT } from '@/lib/constants'
+import { onSubmitFormSystemMessage } from '@/lib/actions'
+import { cn } from '@/lib/utils'
 
-const schema = z.object({
+export const SystemMessageFormSchema = z.object({
   content: z.string().min(5).max(1024)
 })
 
@@ -22,58 +29,43 @@ type SystemMessageFormProps = {
 export function SystemMessageForm({
   initialSystemMessage
 }: SystemMessageFormProps) {
-  const {
-    systemMessage,
-    setSystemMessageMutation,
-    isPending,
-    isSuccess,
-    isError
-  } = useSystemMessage(initialSystemMessage)
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    resolver: zodResolver(schema)
+  const form = useForm<z.infer<typeof SystemMessageFormSchema>>({
+    resolver: zodResolver(SystemMessageFormSchema)
   })
 
-  if (!systemMessage) return null
-
-  const errorMessage = errors.content?.message?.toString()
+  const onSubmit = async (values: z.infer<typeof SystemMessageFormSchema>) => {
+    await onSubmitFormSystemMessage(values.content)
+  }
 
   return (
-    <form
-      className="mt-12"
-      onSubmit={handleSubmit(data => setSystemMessageMutation(data.content))}
-    >
-      <h2 className="mx-4 my-2">System Message</h2>
-      <Textarea
-        className={cn('w-full', 'h-96')}
-        {...register('content')}
-        defaultValue={systemMessage?.content}
-      />
-      <div className={cn('flex', 'flex-row', 'items-center')}>
-        <Button
-          disabled={isPending || errors.content !== undefined}
-          type="submit"
-          variant="ghost"
-          className={cn('m-2')}
-        >
+    <Form {...form}>
+      <form className={cn('mt-8')} onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField
+          control={form.control}
+          name="content"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className={cn('font-semibold')}>
+                System Message
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  className={cn('h-96', 'resize-y')}
+                  defaultValue={
+                    initialSystemMessage?.content ||
+                    DEFAULT_SYSTEM_MESSAGE_CONTENT
+                  }
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button className={cn('mt-4')} type="submit">
           Save
         </Button>
-        {(errorMessage || isError) && (
-          <>
-            <IconBxsErrorCircle className={cn('w-8', 'h-8', 'fill-red-500')} />
-            {errorMessage !== undefined && (
-              <p className={cn('text-red-500', 'mx-4', 'text-sm')}>
-                {errorMessage}
-              </p>
-            )}
-          </>
-        )}
-        {isSuccess && <IconCheckCircle className={cn('w-8', 'h-8')} />}
-      </div>
-    </form>
+      </form>
+    </Form>
   )
 }
