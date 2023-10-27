@@ -2,20 +2,21 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as z from 'zod'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { SystemMessage } from '@/lib/schema'
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
 import { DEFAULT_SYSTEM_MESSAGE_CONTENT } from '@/lib/constants'
-import { onSubmitFormSystemMessage } from '@/lib/actions'
+import { saveSystemMessage } from '@/lib/actions'
 import { cn } from '@/lib/utils'
 
 export const SystemMessageFormSchema = z.object({
@@ -34,7 +35,7 @@ export function SystemMessageForm({
   })
 
   const onSubmit = async (values: z.infer<typeof SystemMessageFormSchema>) => {
-    await onSubmitFormSystemMessage(values.content)
+    await saveSystemMessage(values.content)
   }
 
   return (
@@ -58,11 +59,19 @@ export function SystemMessageForm({
                   {...field}
                 />
               </FormControl>
+              <FormDescription>
+                Customize your interactions with ChatGPT by providing specific
+                details and guidelines for your chats
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className={cn('mt-4')} type="submit">
+        <Button
+          disabled={form.formState.isSubmitting}
+          className={cn('mt-4')}
+          type="submit"
+        >
           Save
         </Button>
       </form>

@@ -102,3 +102,11 @@ export const systemMessages = pgTable('system_messages', {
 })
 
 export type SystemMessage = typeof systemMessages.$inferSelect
+
+export const allowedUsers = pgTable('allowed_users', {
+  id: serial('id').primaryKey(),
+  email: varchar('email').unique().notNull()
+})
+
+export type AllowedUser = typeof allowedUsers.$inferSelect
+export type AllowedUserInsert = typeof allowedUsers.$inferInsert

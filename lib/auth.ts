@@ -4,6 +4,7 @@ import { JWT } from '@/lib/session'
 import { saveUser } from '@/lib/query/user'
 import { authConfig } from '@/lib/config/auth'
 import { appConfig } from '@/lib/config/app'
+import { checkIfUserIsAllowed } from '@/lib/query/allowed-user'
 
 type GitHubProfile = {
   id: number
@@ -31,12 +32,13 @@ export const authOptions: NextAuthOptions = {
     // @ts-ignore
     async jwt({ token, profile }: { token: JWT; profile?: GitHubProfile }) {
       if (profile) {
-        const allowedEmails = appConfig.ADMIN_EMAILS
-        console.log(allowedEmails)
-        if (
-          allowedEmails.length > 0 &&
-          !allowedEmails.includes(profile.email)
-        ) {
+        const isUserAllowed = await checkIfUserIsAllowed(profile.email)
+
+        const isAllowed = isUserAllowed
+          ? true
+          : appConfig.ADMIN_EMAILS.includes(profile.email)
+
+        if (!isAllowed) {
           return Promise.reject(new Error('Not allowed'))
         }
 
