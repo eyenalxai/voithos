@@ -27,7 +27,6 @@ export const AddAllowedUserForm = () => {
   const onSubmit = async (
     values: z.infer<typeof AddAllowedUsersFormSchema>
   ) => {
-    console.log(`values: ${values}`)
     await addAllowedUser(values.email)
   }
 
@@ -44,7 +43,7 @@ export const AddAllowedUserForm = () => {
                 <Input placeholder="oof@boof.com" {...field} />
               </FormControl>
               <FormDescription>
-                Email address of the user you want to allow to access the
+                Email address of the user you want to allow
               </FormDescription>
               <FormMessage />
             </FormItem>
