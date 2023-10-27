@@ -24,7 +24,7 @@ export const saveMessage = async (
 
   await db.insert(messages).values({
     content: content,
-    role: 'user',
+    role: role,
     chatId: chatId
   })
 
