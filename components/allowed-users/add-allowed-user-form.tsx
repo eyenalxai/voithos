@@ -50,8 +50,12 @@ export const AddAllowedUserForm = () => {
             </FormItem>
           )}
         />
-        <Button className={cn('mt-4')} type="submit">
-          Add
+        <Button
+          disabled={form.formState.isSubmitting}
+          className={cn('mt-4')}
+          type="submit"
+        >
+          {form.formState.isSubmitting ? 'Adding...' : 'Add'}
         </Button>
       </form>
     </Form>

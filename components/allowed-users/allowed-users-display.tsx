@@ -27,7 +27,7 @@ export const AllowedUsersDisplay = ({
               'flex-row',
               'justify-between',
               'items-center',
-              'w-72'
+              'w-80'
             )}
           >
             <p key={allowedUser.id}>{allowedUser.email}</p>

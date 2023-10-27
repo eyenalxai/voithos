@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { AllowedUser } from '@/lib/schema'
-import { useForm } from 'react-hook-form'
 import { deleteAllowedUser } from '@/lib/actions'
 
 type DeleteAllowedUserFormProps = {
@@ -10,8 +9,6 @@ type DeleteAllowedUserFormProps = {
 export const DeleteAllowedUserForm = ({
   allowedUser
 }: DeleteAllowedUserFormProps) => {
-  const form = useForm()
-
   const onSubmit = async () => {
     await deleteAllowedUser(allowedUser.id)
   }

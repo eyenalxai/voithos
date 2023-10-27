@@ -72,7 +72,7 @@ export function SystemMessageForm({
           className={cn('mt-4')}
           type="submit"
         >
-          Save
+          {form.formState.isSubmitting ? 'Saving...' : 'Save'}
         </Button>
       </form>
     </Form>
