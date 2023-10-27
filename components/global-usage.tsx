@@ -1,7 +1,6 @@
 import { getAllUsers } from '@/lib/query/user'
 import { getUsageByUserId, Usage } from '@/lib/query/usage'
 
-// TypeScript JSX
 type UserUsage = {
   userUsage: {
     username: string
@@ -71,6 +70,7 @@ const UserUsage = ({ userUsage }: UserUsage) => {
 type GlobalUsageProps = {
   isAdmin: boolean
 }
+
 export const GlobalUsage = async ({ isAdmin }: GlobalUsageProps) => {
   if (!isAdmin) return null
 
