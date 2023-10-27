@@ -7,6 +7,7 @@ type ChatMessageAvatarProps = {
 }
 
 export function ChatMessageAvatar({ message }: ChatMessageAvatarProps) {
+  console.log('message', message)
   return (
     <div
       className={cn(

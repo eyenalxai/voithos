@@ -88,7 +88,7 @@ export const GlobalUsage = async ({ isAdmin }: GlobalUsageProps) => {
   return (
     <div>
       {userUsages.map(userUsage => {
-        return <UserUsage userUsage={userUsage} />
+        return <UserUsage key={userUsage.username} userUsage={userUsage} />
       })}
     </div>
   )

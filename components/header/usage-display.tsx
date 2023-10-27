@@ -19,17 +19,17 @@ export function UsageDisplay() {
 
   return (
     <>
-      {totalSpentThisMonth && totalSpentThisMonth > 0 && (
+      {totalSpentThisMonth && totalSpentThisMonth > 0.1 && (
         <div className="mt-2 text-sm text-slate-500">
           ${totalSpentThisMonth.toFixed(2)} This Month
         </div>
       )}
-      {totalSpentLastMonth && totalSpentLastMonth > 0 && (
+      {totalSpentLastMonth && totalSpentLastMonth > 0.1 && (
         <div className="mt-2 text-sm text-slate-500">
           ${totalSpentLastMonth.toFixed(2)} Last Month
         </div>
       )}
-      {totalSpent && totalSpent > 0 && (
+      {totalSpent && totalSpent > 0.1 && (
         <div className="text-sm text-slate-500">
           ${totalSpent.toFixed(2)} Total
         </div>
