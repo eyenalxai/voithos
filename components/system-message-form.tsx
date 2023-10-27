@@ -40,7 +40,7 @@ export function SystemMessageForm({
 
   return (
     <Form {...form}>
-      <form className={cn('mt-8')} onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="content"
