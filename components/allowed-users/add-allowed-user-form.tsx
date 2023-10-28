@@ -16,7 +16,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { addAllowedUser } from '@/lib/actions'
 
 export const AddAllowedUsersFormSchema = z.object({
-  email: z.string().email().min(3).max(100)
+  email: z
+    .string()
+    .email()
+    .min(3)
+    .max(100)
+    .transform(v => v.trim().toLowerCase())
 })
 
 export const AddAllowedUserForm = () => {

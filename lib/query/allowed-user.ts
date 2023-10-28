@@ -4,7 +4,7 @@ import { allowedUsers } from '@/lib/schema'
 
 export const checkIfUserIsAllowed = async (email: string) => {
   const allowedUser = await db.query.allowedUsers.findFirst({
-    where: eq(allowedUsers.email, email)
+    where: eq(allowedUsers.email, email.toLowerCase())
   })
 
   return allowedUser !== undefined
