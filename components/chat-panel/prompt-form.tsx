@@ -62,6 +62,7 @@ export function PromptForm({
         )}
       >
         <Textarea
+          disabled={isLoading}
           ref={inputRef}
           tabIndex={0}
           onKeyDown={onKeyDown}
