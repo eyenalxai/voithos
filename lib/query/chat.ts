@@ -1,6 +1,6 @@
 import { db } from '@/lib/database'
 import { ChatGPTModel, chats, messages } from '@/lib/schema'
-import { eq, inArray } from 'drizzle-orm'
+import { desc, eq, inArray } from 'drizzle-orm'
 import { deleteMessagesByChatId } from '@/lib/query/message'
 
 export const getChatById = async (chatId: string) => {
@@ -14,7 +14,8 @@ export const getChatById = async (chatId: string) => {
 
 export const getChatsByUserId = async (userId: number) => {
   return db.query.chats.findMany({
-    where: eq(chats.userId, userId)
+    where: eq(chats.userId, userId),
+    orderBy: [desc(chats.createdAt)]
   })
 }
 
