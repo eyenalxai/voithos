@@ -22,7 +22,7 @@ export default async function SettingsPage() {
   const allowedUsers = await getAllowedUsers()
 
   return (
-    <div className={cn('flex', 'flex-col', 'gap-12', 'my-8')}>
+    <div className={cn('flex', 'flex-col', 'gap-12', 'my-8', 'items-start')}>
       <SystemMessageForm initialSystemMessage={initialSystemMessage} />
       <AllowedUsersDisplay isAdmin={isAdmin} allowedUsers={allowedUsers} />
       <GlobalUsage isAdmin={isAdmin} />

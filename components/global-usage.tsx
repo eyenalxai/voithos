@@ -1,5 +1,6 @@
 import { getAllUsers } from '@/lib/query/user'
 import { getUsageByUserId, Usage } from '@/lib/query/usage'
+import { cn } from '@/lib/utils'
 
 type UserUsage = {
   userUsage: {
@@ -87,6 +88,7 @@ export const GlobalUsage = async ({ isAdmin }: GlobalUsageProps) => {
 
   return (
     <div>
+      <p className={cn('font-semibold', 'text-lg', 'mb-4')}>Global Usage</p>
       {userUsages.map(userUsage => {
         return <UserUsage key={userUsage.username} userUsage={userUsage} />
       })}
