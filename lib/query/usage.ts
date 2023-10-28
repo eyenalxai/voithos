@@ -1,6 +1,6 @@
 import { db } from '@/lib/database'
 import { usage } from '@/lib/schema'
-import { and, eq, gte, sql } from 'drizzle-orm'
+import { and, eq, gte, lte, sql } from 'drizzle-orm'
 
 export type Usage = {
   totalSpent: number | null
@@ -29,7 +29,7 @@ export const getUsageByUserId = async (userId: number): Promise<Usage> => {
       and(
         and(
           gte(usage.createdAt, firstDayThisMonth),
-          gte(usage.createdAt, lastDayThisMonth)
+          lte(usage.createdAt, lastDayThisMonth)
         ),
         eq(usage.userId, userId)
       )
@@ -47,7 +47,7 @@ export const getUsageByUserId = async (userId: number): Promise<Usage> => {
       and(
         and(
           gte(usage.createdAt, firstDayLastMonth),
-          gte(usage.createdAt, lastDayLastMonth)
+          lte(usage.createdAt, lastDayLastMonth)
         ),
         eq(usage.userId, userId)
       )
