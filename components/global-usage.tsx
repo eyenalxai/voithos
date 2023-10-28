@@ -10,10 +10,12 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
+import { compareUserUsage, filterUserUsage } from '@/lib/pricing'
 
 type UserUsage = {
   userUsage: {
     username: string
+    email: string
     usage: Usage
   }
 }
@@ -26,9 +28,11 @@ const RenderUsageItem = ({ userUsage }: UserUsage) => {
     userUsage.usage.totalSpentLastMonth || 0
   ).toFixed(2)
   const totalSpent = (userUsage.usage.totalSpent || 0).toFixed(2)
+
   return (
     <TableRow key={userUsage.username}>
       <TableCell className="font-medium">{userUsage.username}</TableCell>
+      <TableCell>{userUsage.email}</TableCell>
       <TableCell>${totalSpentThisMonth}</TableCell>
       <TableCell>${totalSpentLastMonth}</TableCell>
       <TableCell className="text-right">${totalSpent}</TableCell>
@@ -49,6 +53,7 @@ export const GlobalUsage = async ({ isAdmin }: GlobalUsageProps) => {
     users.map(async user => {
       return {
         username: user.username,
+        email: user.email,
         usage: await getUsageByUserId(user.id)
       }
     })
@@ -62,6 +67,7 @@ export const GlobalUsage = async ({ isAdmin }: GlobalUsageProps) => {
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Username</TableHead>
+            <TableHead>Email</TableHead>
             <TableHead>This Month</TableHead>
             <TableHead>Last Month</TableHead>
             <TableHead className="text-right">Total</TableHead>
@@ -69,11 +75,8 @@ export const GlobalUsage = async ({ isAdmin }: GlobalUsageProps) => {
         </TableHeader>
         <TableBody>
           {userUsages
-            .sort(
-              (a, b) =>
-                (b.usage.totalSpentThisMonth || 0) -
-                (a.usage.totalSpentThisMonth || 0)
-            )
+            .filter(filterUserUsage)
+            .sort(compareUserUsage)
             .map(userUsage => {
               return (
                 <RenderUsageItem

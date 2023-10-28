@@ -3,6 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { USAGE_QUERY_KEY } from '@/lib/constants'
 import { getUsage } from '@/lib/fetch/usage'
+import { PRICE_THRESHOLD } from '@/lib/pricing'
 
 export function UsageDisplay() {
   const { data: usage } = useQuery({
@@ -19,17 +20,17 @@ export function UsageDisplay() {
 
   return (
     <>
-      {totalSpentThisMonth && totalSpentThisMonth > 0.1 && (
+      {totalSpentThisMonth && totalSpentThisMonth > PRICE_THRESHOLD && (
         <div className="mt-2 text-sm text-slate-500">
           ${totalSpentThisMonth.toFixed(2)} This Month
         </div>
       )}
-      {totalSpentLastMonth && totalSpentLastMonth > 0.1 && (
+      {totalSpentLastMonth && totalSpentLastMonth > PRICE_THRESHOLD && (
         <div className="mt-2 text-sm text-slate-500">
           ${totalSpentLastMonth.toFixed(2)} Last Month
         </div>
       )}
-      {totalSpent && totalSpent > 0.1 && (
+      {totalSpent && totalSpent > PRICE_THRESHOLD && (
         <div className="text-sm text-slate-500">
           ${totalSpent.toFixed(2)} Total
         </div>
