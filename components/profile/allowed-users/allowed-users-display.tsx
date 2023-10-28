@@ -1,8 +1,8 @@
 'use client'
 
 import { AllowedUser } from '@/lib/schema'
-import { AddAllowedUserForm } from '@/components/allowed-users/add-allowed-user-form'
-import { DeleteAllowedUserForm } from '@/components/allowed-users/delete-allowed-user-form'
+import { AddAllowedUserForm } from '@/components/profile/allowed-users/add-allowed-user-form'
+import { DeleteAllowedUserForm } from '@/components/profile/allowed-users/delete-allowed-user-form'
 import { cn } from '@/lib/utils'
 
 type AllowedUsersFormProps = {

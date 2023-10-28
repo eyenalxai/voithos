@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils'
 import { retrieveUserFromSession } from '@/lib/session'
 import { UserMenu } from '@/components/header/user-menu'
 import { Sidebar } from '@/components/sidebar/sidebar'
+import { getUsageByUserId } from '@/lib/query/usage'
 
 export const Header = async () => {
   const user = await retrieveUserFromSession()
@@ -9,6 +10,8 @@ export const Header = async () => {
   if (!user) {
     return null
   }
+
+  const userUsage = await getUsageByUserId(user.id)
 
   return (
     <header
@@ -31,7 +34,7 @@ export const Header = async () => {
       )}
     >
       <Sidebar />
-      <UserMenu user={user} />
+      <UserMenu user={user} userUsage={userUsage} />
     </header>
   )
 }

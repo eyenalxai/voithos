@@ -13,12 +13,14 @@ import { cn } from '@/lib/utils'
 import { UsageDisplay } from '@/components/header/usage-display'
 import { User } from '@/lib/schema'
 import Link from 'next/link'
+import { Usage } from '@/lib/query/usage'
 
 type UserMenuProps = {
   user: User
+  userUsage: Usage
 }
 
-export function UserMenu({ user }: UserMenuProps) {
+export function UserMenu({ user, userUsage }: UserMenuProps) {
   return (
     <div className="flex items-center justify-between">
       <DropdownMenu>
@@ -43,11 +45,11 @@ export function UserMenu({ user }: UserMenuProps) {
           >
             <div className="text-sm font-medium">{user.username}</div>
             <div className="text-sm text-slate-500">{user.email}</div>
-            <UsageDisplay />
+            <UsageDisplay initialUsage={userUsage} />
           </div>
 
           <Button asChild variant={'outline'} className={'mx-4'}>
-            <Link href={`/settings`}>Settings</Link>
+            <Link href={`/profile`}>Profile</Link>
           </Button>
 
           <Button

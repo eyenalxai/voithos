@@ -4,11 +4,17 @@ import { useQuery } from '@tanstack/react-query'
 import { USAGE_QUERY_KEY } from '@/lib/constants'
 import { getUsage } from '@/lib/fetch/usage'
 import { PRICE_THRESHOLD } from '@/lib/pricing'
+import { Usage } from '@/lib/query/usage'
 
-export function UsageDisplay() {
+type UsageDisplayProps = {
+  initialUsage: Usage
+}
+
+export function UsageDisplay({ initialUsage }: UsageDisplayProps) {
   const { data: usage } = useQuery({
     queryKey: [USAGE_QUERY_KEY],
     queryFn: getUsage,
+    initialData: initialUsage,
     refetchInterval: 30 * 1000,
     refetchOnWindowFocus: true,
     refetchOnMount: true

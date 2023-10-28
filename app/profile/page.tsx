@@ -1,12 +1,12 @@
 import { retrieveUserFromSession } from '@/lib/session'
 import { redirect } from 'next/navigation'
-import { SystemMessageForm } from '@/components/system-message-form'
+import { SystemMessageForm } from '@/components/profile/system-message-form'
 import { getSystemMessageByUserId } from '@/lib/query/system-message'
-import { AllowedUsersDisplay } from '@/components/allowed-users/allowed-users-display'
+import { AllowedUsersDisplay } from '@/components/profile/allowed-users/allowed-users-display'
 import { cn } from '@/lib/utils'
 import { getAllowedUsers } from '@/lib/query/allowed-user'
 import { isUserAdmin } from '@/lib/permissions'
-import { GlobalUsage } from '@/components/global-usage'
+import { GlobalUsage } from '@/components/profile/global-usage'
 
 export default async function SettingsPage() {
   const user = await retrieveUserFromSession()
