@@ -10,6 +10,12 @@ export const GPT_35_TURBO_OUTPUT = 0.000002
 
 export const PRICE_THRESHOLD = 0.01
 
+export type UserUsage = {
+  username: string
+  email: string
+  usage: Usage
+}
+
 export const filterUserUsage = (userUsage: {
   username: string
   usage: Usage
@@ -25,10 +31,13 @@ export const filterUserUsage = (userUsage: {
   )
 }
 
+export type UsageSortKey = keyof Usage
+
 export const compareUserUsage = (
-  a: { username: string; usage: Usage },
-  b: { username: string; usage: Usage }
-) => (b.usage.totalSpentThisMonth || 0) - (a.usage.totalSpentThisMonth || 0)
+  a: UserUsage,
+  b: UserUsage,
+  sortBy: UsageSortKey
+) => (b.usage[sortBy] || 0) - (a.usage[sortBy] || 0)
 
 export const getTokenCost = (
   tokens: number,
