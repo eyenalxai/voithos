@@ -1,6 +1,15 @@
 import { getAllUsers } from '@/lib/query/user'
 import { getUsageByUserId, Usage } from '@/lib/query/usage'
 import { cn } from '@/lib/utils'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
 
 type UserUsage = {
   userUsage: {
@@ -9,62 +18,21 @@ type UserUsage = {
   }
 }
 
-const RenderUsageItem = ({
-  description,
-  value
-}: {
-  description: string
-  value: number | null
-}) => {
-  if (!value) return null
-
+const RenderUsageItem = ({ userUsage }: UserUsage) => {
+  const totalSpentThisMonth = (
+    userUsage.usage.totalSpentThisMonth || 0
+  ).toFixed(2)
+  const totalSpentLastMonth = (
+    userUsage.usage.totalSpentLastMonth || 0
+  ).toFixed(2)
+  const totalSpent = (userUsage.usage.totalSpent || 0).toFixed(2)
   return (
-    <div>
-      <p className="text-xs text-slate-500 dark:text-slate-400">
-        {description}
-      </p>
-      <p className="mt-1 text-xs text-slate-900 dark:text-slate-100">
-        {value.toFixed(2)}
-      </p>
-    </div>
-  )
-}
-
-const UserUsage = ({ userUsage }: UserUsage) => {
-  const { totalSpent, totalSpentThisMonth, totalSpentLastMonth } =
-    userUsage.usage
-
-  if (
-    (!totalSpent || totalSpent < 0.1) &&
-    (!totalSpentThisMonth || totalSpentThisMonth < 0.1) &&
-    (!totalSpentLastMonth || totalSpentLastMonth < 0.1)
-  )
-    return null
-
-  return (
-    <div className="mx-auto max-w-md rounded-xl border px-2 py-4 sm:px-4 lg:px-6">
-      <ul className="space-y-2">
-        <li className="rounded-lg p-2 shadow-sm">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold">{userUsage.username}</h2>
-          </div>
-          <div className="mt-1 grid grid-cols-3 gap-2">
-            <RenderUsageItem
-              description="This Month"
-              value={userUsage.usage.totalSpentThisMonth}
-            />
-            <RenderUsageItem
-              description="Last Month"
-              value={userUsage.usage.totalSpentLastMonth}
-            />
-            <RenderUsageItem
-              description="Total"
-              value={userUsage.usage.totalSpent}
-            />
-          </div>
-        </li>
-      </ul>
-    </div>
+    <TableRow key={userUsage.username}>
+      <TableCell className="font-medium">{userUsage.username}</TableCell>
+      <TableCell>${totalSpentThisMonth}</TableCell>
+      <TableCell>${totalSpentLastMonth}</TableCell>
+      <TableCell className="text-right">${totalSpent}</TableCell>
+    </TableRow>
   )
 }
 
@@ -89,9 +57,33 @@ export const GlobalUsage = async ({ isAdmin }: GlobalUsageProps) => {
   return (
     <div>
       <p className={cn('font-semibold', 'text-lg', 'mb-4')}>Global Usage</p>
-      {userUsages.map(userUsage => {
-        return <UserUsage key={userUsage.username} userUsage={userUsage} />
-      })}
+      <Table>
+        <TableCaption>A list of all users and their usage</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Username</TableHead>
+            <TableHead>This Month</TableHead>
+            <TableHead>Last Month</TableHead>
+            <TableHead className="text-right">Total</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {userUsages
+            .sort(
+              (a, b) =>
+                (b.usage.totalSpentThisMonth || 0) -
+                (a.usage.totalSpentThisMonth || 0)
+            )
+            .map(userUsage => {
+              return (
+                <RenderUsageItem
+                  userUsage={userUsage}
+                  key={userUsage.username}
+                />
+              )
+            })}
+        </TableBody>
+      </Table>
     </div>
   )
 }

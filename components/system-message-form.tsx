@@ -39,42 +39,45 @@ export function SystemMessageForm({
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="content"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className={cn('font-semibold')}>
-                System Message
-              </FormLabel>
-              <FormControl>
-                <Textarea
-                  className={cn('h-96', 'resize-y')}
-                  defaultValue={
-                    initialSystemMessage?.content ||
-                    DEFAULT_SYSTEM_MESSAGE_CONTENT
-                  }
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>
-                Customize your interactions with ChatGPT by providing specific
-                details and guidelines for your chats
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          disabled={form.formState.isSubmitting}
-          className={cn('mt-4')}
-          type="submit"
-        >
-          {form.formState.isSubmitting ? 'Saving...' : 'Save'}
-        </Button>
-      </form>
-    </Form>
+    <div className={cn('flex', 'flex-col', 'items-start', 'gap-2')}>
+      <p className={cn('font-semibold', 'text-lg')}>Settings</p>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="content"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className={cn('font-semibold')}>
+                  System Message
+                </FormLabel>
+                <FormControl>
+                  <Textarea
+                    className={cn('h-96', 'resize-y')}
+                    defaultValue={
+                      initialSystemMessage?.content ||
+                      DEFAULT_SYSTEM_MESSAGE_CONTENT
+                    }
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Customize your interactions with ChatGPT by providing specific
+                  details and guidelines for your chats
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button
+            disabled={form.formState.isSubmitting}
+            className={cn('mt-4')}
+            type="submit"
+          >
+            {form.formState.isSubmitting ? 'Saving...' : 'Save'}
+          </Button>
+        </form>
+      </Form>
+    </div>
   )
 }
