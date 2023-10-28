@@ -26,7 +26,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn('font-sans antialiased')}>
+      <body className={cn('font-sans', 'antialiased')}>
         <Providers attribute="class" defaultTheme="system" enableSystem>
           <Header />
           <main className={cn('container', 'mx-auto', 'max-w-xl')}>
