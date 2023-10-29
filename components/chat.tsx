@@ -19,6 +19,7 @@ import { ChatList } from '@/components/chat-panel/messages-display/chat-list'
 import { ChatScrollAnchor } from '@/components/chat-panel/chat-scroll-anchor'
 import { useQueryClient } from '@tanstack/react-query'
 import { ChatGPTModel, Message } from '@/lib/schema'
+import { revalidateChat } from '@/lib/actions'
 
 type ChatProps = {
   uuid4: string
@@ -50,6 +51,7 @@ export default function Chat({
           queryClient.invalidateQueries({ queryKey: [USAGE_QUERY_KEY] })
         )
         .then(() => queryClient.refetchQueries({ queryKey: [USAGE_QUERY_KEY] }))
+        .then(() => revalidateChat())
     }
   })
 
