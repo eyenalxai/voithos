@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { ChatGPTModel } from '@/lib/schema'
+import { Children, ReactNode } from 'react'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -21,4 +22,14 @@ export const enumToModelName = (
   if (model === 'gpt_4') return 'gpt-4'
 
   throw new Error(`Unknown model: ${model}`)
+}
+
+export const isInline = (children: ReactNode): boolean => {
+  for (let child of Children.toArray(children)) {
+    if (typeof child === 'string' && child.includes('\n')) {
+      return false
+    }
+  }
+
+  return true
 }

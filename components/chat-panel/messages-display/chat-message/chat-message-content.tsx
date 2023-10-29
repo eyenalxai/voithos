@@ -3,7 +3,7 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import { MemoizedReactMarkdown } from '@/components/chat-panel/messages-display/markdown'
 import { CodeBlock } from '@/components/chat-panel/messages-display/codeblock'
-import { cn } from '@/lib/utils'
+import { cn, isInline } from '@/lib/utils'
 
 type ChatMessageContentProps = {
   message: Message
@@ -25,18 +25,10 @@ export function ChatMessageContent({ message }: ChatMessageContentProps) {
           p({ children }) {
             return <p className="mb-2 last:mb-0">{children}</p>
           },
-          code({ node, inline, className, children, ...props }) {
-            if (Array.isArray(children)) {
-              if (children[0] == '▍') {
-                return (
-                  <span className="mt-1 animate-pulse cursor-default">▍</span>
-                )
-              }
-
-              children[0] = (children[0] as string).replace('▍', '▍')
-            }
-
+          code({ node, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '')
+
+            const inline = isInline(children)
 
             if (inline) {
               return (
