@@ -1,6 +1,5 @@
 import { Message } from 'ai'
 import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
 import { MemoizedReactMarkdown } from '@/components/chat-panel/messages-display/markdown'
 import { CodeBlock } from '@/components/chat-panel/messages-display/codeblock'
 import { cn } from '@/lib/utils'
@@ -20,7 +19,7 @@ export function ChatMessageContent({ message }: ChatMessageContentProps) {
           'prose-pre:p-0',
           'break-words'
         )}
-        remarkPlugins={[remarkGfm, remarkMath]}
+        remarkPlugins={[remarkGfm]}
         components={{
           p({ children }) {
             return <p className="mb-2 last:mb-0">{children}</p>

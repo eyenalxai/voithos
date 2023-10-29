@@ -1677,13 +1677,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/katex@npm:^0.16.0":
-  version: 0.16.3
-  resolution: "@types/katex@npm:0.16.3"
-  checksum: a90fcbbfe12fe8aff2069f478e7a54fea27b99fa14f0256d171cc49771119715a4588a5f0f3bdb29d735781af80f9b712ff1af0e07d61ee86eecf365a884aa0f
-  languageName: node
-  linkType: hard
-
 "@types/mdast@npm:^3.0.0":
   version: 3.0.13
   resolution: "@types/mdast@npm:3.0.13"
@@ -2649,13 +2642,6 @@ __metadata:
   version: 4.1.1
   resolution: "commander@npm:4.1.1"
   checksum: 84a76c08fe6cc08c9c93f62ac573d2907d8e79138999312c92d4155bc2325d487d64d13f669b2000c9f8caf70493c1be2dac74fec3c51d5a04f8bc3ae1830bab
-  languageName: node
-  linkType: hard
-
-"commander@npm:^8.3.0":
-  version: 8.3.0
-  resolution: "commander@npm:8.3.0"
-  checksum: 8b043bb8322ea1c39664a1598a95e0495bfe4ca2fad0d84a92d7d1d8d213e2a155b441d2470c8e08de7c4a28cf2bc6e169211c49e1b21d9f7edc6ae4d9356060
   languageName: node
   linkType: hard
 
@@ -4953,17 +4939,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"katex@npm:^0.16.0":
-  version: 0.16.9
-  resolution: "katex@npm:0.16.9"
-  dependencies:
-    commander: "npm:^8.3.0"
-  bin:
-    katex: cli.js
-  checksum: 750b1d61063eda970b97bfb2e8e26c898548ce2b544286813982498b1ce1d4cfae41dd32fa7e9488b6118a4c8df5cf06871746993d45227de34ea224c63199df
-  languageName: node
-  linkType: hard
-
 "keyv@npm:^4.5.3":
   version: 4.5.3
   resolution: "keyv@npm:4.5.3"
@@ -5307,17 +5282,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdast-util-math@npm:^2.0.0":
-  version: 2.0.2
-  resolution: "mdast-util-math@npm:2.0.2"
-  dependencies:
-    "@types/mdast": "npm:^3.0.0"
-    longest-streak: "npm:^3.0.0"
-    mdast-util-to-markdown: "npm:^1.3.0"
-  checksum: 2270b6f8d7f0eb7dd5c27bee8ad43f29a8e76a7092742945fd115480ddd8bf72ae53ba1f8f63697cec82016e0c169f0a201503862dfe6bc7ac2286662de3fe8e
-  languageName: node
-  linkType: hard
-
 "mdast-util-phrasing@npm:^3.0.0":
   version: 3.0.1
   resolution: "mdast-util-phrasing@npm:3.0.1"
@@ -5513,21 +5477,6 @@ __metadata:
     micromark-util-combine-extensions: "npm:^1.0.0"
     micromark-util-types: "npm:^1.0.0"
   checksum: 53056376d14caf3fab2cc44881c1ad49d975776cc2267bca74abda2cb31f2a77ec0fb2bdb2dd97565f0d9943ad915ff192b89c1cee5d9d727569a5e38505799b
-  languageName: node
-  linkType: hard
-
-"micromark-extension-math@npm:^2.0.0":
-  version: 2.1.2
-  resolution: "micromark-extension-math@npm:2.1.2"
-  dependencies:
-    "@types/katex": "npm:^0.16.0"
-    katex: "npm:^0.16.0"
-    micromark-factory-space: "npm:^1.0.0"
-    micromark-util-character: "npm:^1.0.0"
-    micromark-util-symbol: "npm:^1.0.0"
-    micromark-util-types: "npm:^1.0.0"
-    uvu: "npm:^0.5.0"
-  checksum: 5d40ffc93862498cbcbc9c96a40a05150b878c3d86ab25bc771dec005d286f4381578ccee3f421ecfd9db259298a89a37a5b6b48529842240d34f8acd8edffb5
   languageName: node
   linkType: hard
 
@@ -6116,7 +6065,6 @@ __metadata:
     react-syntax-highlighter: "npm:^15.5.0"
     react-textarea-autosize: "npm:^8.5.3"
     remark-gfm: "npm:^3.0.1"
-    remark-math: "npm:^5.1.1"
     shadcn-ui: "npm:^0.4.1"
     tailwind-merge: "npm:^1.14.0"
     tailwindcss: "npm:3.3.5"
@@ -7040,18 +6988,6 @@ __metadata:
     micromark-extension-gfm: "npm:^2.0.0"
     unified: "npm:^10.0.0"
   checksum: 53c4e82204f82f81949a170efdeb49d3c45137b7bca06a7ff857a483aac1a44b55ef0de8fb1bbe4f1292f2a378058e2e42e644f2c61f3e0cdc3e56afa4ec2a2c
-  languageName: node
-  linkType: hard
-
-"remark-math@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "remark-math@npm:5.1.1"
-  dependencies:
-    "@types/mdast": "npm:^3.0.0"
-    mdast-util-math: "npm:^2.0.0"
-    micromark-extension-math: "npm:^2.0.0"
-    unified: "npm:^10.0.0"
-  checksum: e61e314398e65d1ef9343cce37bdb8e94697772d53f1b9e48f815cece35033b4d41db81766696135558c6de40f2ad86877b49891daec6c7b1453dba0e034a9dc
   languageName: node
   linkType: hard
 
