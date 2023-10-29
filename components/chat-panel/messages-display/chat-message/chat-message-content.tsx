@@ -26,14 +26,14 @@ export function ChatMessageContent({ message }: ChatMessageContentProps) {
             return <p className="mb-2 last:mb-0">{children}</p>
           },
           code({ node, inline, className, children, ...props }) {
-            if (children.length) {
+            if (Array.isArray(children)) {
               if (children[0] == '▍') {
                 return (
                   <span className="mt-1 animate-pulse cursor-default">▍</span>
                 )
               }
 
-              children[0] = (children[0] as string).replace('`▍`', '▍')
+              children[0] = (children[0] as string).replace('▍', '▍')
             }
 
             const match = /language-(\w+)/.exec(className || '')
