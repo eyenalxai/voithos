@@ -5967,9 +5967,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-auth@npm:^4.24.3":
-  version: 4.24.3
-  resolution: "next-auth@npm:4.24.3"
+"next-auth@npm:^4.24.4":
+  version: 4.24.4
+  resolution: "next-auth@npm:4.24.4"
   dependencies:
     "@babel/runtime": "npm:^7.20.13"
     "@panva/hkdf": "npm:^1.0.2"
@@ -5981,14 +5981,14 @@ __metadata:
     preact-render-to-string: "npm:^5.1.19"
     uuid: "npm:^8.3.2"
   peerDependencies:
-    next: ^12.2.5 || ^13
+    next: ^12.2.5 || ^13 || ^14
     nodemailer: ^6.6.5
     react: ^17.0.2 || ^18
     react-dom: ^17.0.2 || ^18
   peerDependenciesMeta:
     nodemailer:
       optional: true
-  checksum: 56afa5d0a05b79defb63f55b50d378b6905c84bd1a204fb10b6a5a43f7b19bf956763a5b46c0fe73ca404ac4bbde5e58f4939c993dbb03f012db4fb94ac858ce
+  checksum: c2f86aba098369388cdb43b33097cb451781d0d12184b39549b4eb74994efcd830f2c1d1877c51e9396182fe34af5b3e71209a5d5d335f0063e52c24c786d9c8
   languageName: node
   linkType: hard
 
@@ -6101,11 +6101,11 @@ __metadata:
     gpt-tokenizer: "npm:^2.1.2"
     lucide-react: "npm:^0.290.0"
     next: "npm:14.0.0"
-    next-auth: "npm:^4.24.3"
+    next-auth: "npm:^4.24.4"
     next-themes: "npm:^0.2.1"
     openai-edge: "npm:^1.2.2"
     postcss: "npm:8.4.31"
-    postgres: "npm:^3.4.1"
+    postgres: "npm:^3.4.2"
     prettier: "npm:^3.0.3"
     react: "npm:18.2.0"
     react-copy-to-clipboard: "npm:^5.1.0"
@@ -6652,10 +6652,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postgres@npm:^3.4.1":
-  version: 3.4.1
-  resolution: "postgres@npm:3.4.1"
-  checksum: f426e958011df4d7e7db1d19a5210be5a95f0f97efa3dba4281ea8580663bc0ee5b62eb96723eb26ace6cc3125a963ac75dd220d19e397f65d4945e06b844b60
+"postgres@npm:^3.4.2":
+  version: 3.4.2
+  resolution: "postgres@npm:3.4.2"
+  checksum: 9901a32241c2639678c7f652c91efa3c142f9b8c571c906f40becddd4d727f86dc144a07dca60331bdb1d3cb8583bd9a185242925a299b575f0f7cfbc97dafab
   languageName: node
   linkType: hard
 
