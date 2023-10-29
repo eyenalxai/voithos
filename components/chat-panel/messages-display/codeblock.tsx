@@ -1,13 +1,13 @@
 'use client'
 
-import { FC, memo } from 'react'
+import { FC, memo, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { nord } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 import { IconCheck, IconCopy } from '@/components/ui/icons'
 import { Button } from '@/components/ui/button'
-import { useCopyToClipboard } from '@/lib/hook/use-copy-to-clipboard'
 import { cn } from '@/lib/utils'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 interface Props {
   language: string
@@ -15,12 +15,7 @@ interface Props {
 }
 
 const CodeBlock: FC<Props> = memo(({ language, value }) => {
-  const { isCopied, copyToClipboard } = useCopyToClipboard({ timeout: 2000 })
-
-  const onCopy = () => {
-    if (isCopied) return
-    copyToClipboard(value)
-  }
+  const [isCopied, setIsCopied] = useState<Boolean>(false)
 
   return (
     <div className="codeblock relative w-full bg-slate-950 font-sans">
@@ -39,21 +34,27 @@ const CodeBlock: FC<Props> = memo(({ language, value }) => {
       >
         <span className="text-xs lowercase">{language}</span>
         <div className="flex items-center space-x-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            className={cn(
-              'text-xs',
-              ['hover:bg-slate-200', 'dark:hover:bg-slate-800'],
-              'focus-visible:ring-1',
-              'focus-visible:ring-slate-700',
-              'focus-visible:ring-offset-0'
-            )}
-            onClick={onCopy}
-          >
-            {isCopied ? <IconCheck /> : <IconCopy />}
-            <span className="sr-only">Copy code</span>
-          </Button>
+          <CopyToClipboard text={value}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(
+                'text-xs',
+                ['hover:bg-slate-200', 'dark:hover:bg-slate-800'],
+                'focus-visible:ring-1',
+                'focus-visible:ring-slate-700',
+                'focus-visible:ring-offset-0'
+              )}
+              onClick={() => {
+                setIsCopied(true)
+                const timer = setTimeout(() => setIsCopied(false), 1000)
+                return () => clearTimeout(timer)
+              }}
+            >
+              {isCopied ? <IconCheck /> : <IconCopy />}
+              <span className="sr-only">Copy code</span>
+            </Button>
+          </CopyToClipboard>
         </div>
       </div>
       <SyntaxHighlighter

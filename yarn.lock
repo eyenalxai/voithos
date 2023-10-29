@@ -1716,6 +1716,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-copy-to-clipboard@npm:^5.0.6":
+  version: 5.0.6
+  resolution: "@types/react-copy-to-clipboard@npm:5.0.6"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: c03fa75de2db27b08a86f258443b7e61184150a69fb0a22ab6d8181c652c126cdea71d3de5ad41ef9b23602283bea1d3c13784629970feda77984dc83533119e
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:18.2.14":
   version: 18.2.14
   resolution: "@types/react-dom@npm:18.2.14"
@@ -2682,6 +2691,15 @@ __metadata:
   version: 0.5.0
   resolution: "cookie@npm:0.5.0"
   checksum: c01ca3ef8d7b8187bae434434582288681273b5a9ed27521d4d7f9f7928fe0c920df0decd9f9d3bbd2d14ac432b8c8cf42b98b3bdd5bfe0e6edddeebebe8b61d
+  languageName: node
+  linkType: hard
+
+"copy-to-clipboard@npm:^3.3.1":
+  version: 3.3.3
+  resolution: "copy-to-clipboard@npm:3.3.3"
+  dependencies:
+    toggle-selection: "npm:^1.0.6"
+  checksum: 3ebf5e8ee00601f8c440b83ec08d838e8eabb068c1fae94a9cda6b42f288f7e1b552f3463635f419af44bf7675afc8d0390d30876cf5c2d5d35f86d9c56a3e5f
   languageName: node
   linkType: hard
 
@@ -6066,6 +6084,7 @@ __metadata:
     "@tanstack/react-query": "npm:^5.0.5"
     "@types/node": "npm:20.8.9"
     "@types/react": "npm:18.2.33"
+    "@types/react-copy-to-clipboard": "npm:^5.0.6"
     "@types/react-dom": "npm:18.2.14"
     "@types/react-syntax-highlighter": "npm:^15.5.9"
     "@types/uuid": "npm:^9.0.6"
@@ -6089,6 +6108,7 @@ __metadata:
     postgres: "npm:^3.4.1"
     prettier: "npm:^3.0.3"
     react: "npm:18.2.0"
+    react-copy-to-clipboard: "npm:^5.1.0"
     react-dom: "npm:18.2.0"
     react-hook-form: "npm:^7.47.0"
     react-intersection-observer: "npm:^9.5.2"
@@ -6752,6 +6772,18 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 900a93d3cdae3acd7d16f642c29a642aea32c2026446151f0778c62ac089d4b8e6c986811076e1ae180a694cedf077d453a11b58ff0a865629a4f82ab558e102
+  languageName: node
+  linkType: hard
+
+"react-copy-to-clipboard@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "react-copy-to-clipboard@npm:5.1.0"
+  dependencies:
+    copy-to-clipboard: "npm:^3.3.1"
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    react: ^15.3.0 || 16 || 17 || 18
+  checksum: de70d9f9c2d17cee207888ed791d4a042c300e5ca732503434d49e6745cff56c0d5ebcc82ab86237e9c2248e636d1d031b9f9cf9913ecec61d82a0e5ebc93881
   languageName: node
   linkType: hard
 
@@ -7806,6 +7838,13 @@ __metadata:
   dependencies:
     is-number: "npm:^7.0.0"
   checksum: 487988b0a19c654ff3e1961b87f471702e708fa8a8dd02a298ef16da7206692e8552a0250e8b3e8759270f62e9d8314616f6da274734d3b558b1fc7b7724e892
+  languageName: node
+  linkType: hard
+
+"toggle-selection@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "toggle-selection@npm:1.0.6"
+  checksum: f2cf1f2c70f374fd87b0cdc8007453ba9e981c4305a8bf4eac10a30e62ecdfd28bca7d18f8f15b15a506bf8a7bfb20dbe3539f0fcf2a2c8396c1a78d53e1f179
   languageName: node
   linkType: hard
 
