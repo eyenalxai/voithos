@@ -70,7 +70,7 @@ export default function Chat({
             <SelectItem value={'gpt_3_5_turbo' as ChatGPTModel}>
               GPT 3.5 Turbo
             </SelectItem>
-            <SelectItem value={'gpt_4' as ChatGPTModel}>GPT 4</SelectItem>
+            <SelectItem value={'gpt_4' as ChatGPTModel}>GPT 4 Turbo</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
