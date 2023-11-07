@@ -42,6 +42,5 @@ export const deleteAllowedUser = async (allowedUserId: number) => {
 }
 
 export const revalidateChat = async () => {
-  console.log('revalidating chat')
   revalidatePath(`/chat/[uuid4]`, 'page')
 }
