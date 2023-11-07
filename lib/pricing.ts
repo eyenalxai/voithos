@@ -2,8 +2,8 @@ import { encode } from 'gpt-tokenizer'
 import { ChatGPTModel, Role } from '@/lib/schema'
 import { Usage } from '@/lib/query/usage'
 
-export const GPT_4_INPUT = 0.00003
-export const GPT_4_OUTPUT = 0.00006
+export const GPT_4_INPUT = 0.00001
+export const GPT_4_OUTPUT = 0.00003
 
 export const GPT_35_TURBO_INPUT = 0.0000015
 export const GPT_35_TURBO_OUTPUT = 0.000002
