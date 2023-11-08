@@ -1617,18 +1617,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.7.2, @tanstack/query-core@npm:^5.7.2":
-  version: 5.7.2
-  resolution: "@tanstack/query-core@npm:5.7.2"
-  checksum: e5067c7f5fb2607db0b9c4e51c14ec56a1714d30223380ddd03095126714e635aa2e41447445a92732e4bb02245492f74b4743918469fd9a77cba58fa5331da2
+"@tanstack/query-core@npm:5.8.1, @tanstack/query-core@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "@tanstack/query-core@npm:5.8.1"
+  checksum: 9708175466032119ae412034b65920cb3c94805af099a11906e90bc01aba8b71979d85938ae596826bf2acf8b59c0d3cb1a534eca70a3e093088f635020ea57e
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^5.7.2":
-  version: 5.7.2
-  resolution: "@tanstack/react-query@npm:5.7.2"
+"@tanstack/react-query@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "@tanstack/react-query@npm:5.8.1"
   dependencies:
-    "@tanstack/query-core": "npm:5.7.2"
+    "@tanstack/query-core": "npm:5.8.1"
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
@@ -1638,7 +1638,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 88f3745c94695731dcf3f9301c5fb23e174fada31af807755eecd08924dbb984088fd779f55fbd4434dba16f7dbd74358dee44eafe523d589b2bae7676683d20
+  checksum: f97b239a7c6257706dd5d045fc71bbed6b62dfba7b7f202b3ddf1f4852737612bb0058876498ae9a2fbfdf9a4b47689d2645af07dabcf78e6ed2c2e1e0dff1d5
   languageName: node
   linkType: hard
 
@@ -1718,12 +1718,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.8.10":
-  version: 20.8.10
-  resolution: "@types/node@npm:20.8.10"
+"@types/node@npm:20.9.0":
+  version: 20.9.0
+  resolution: "@types/node@npm:20.9.0"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: caaa3ae9294f1bfdacb029a916c64af63cbcea613a52f53ea86f93c91779859af177b2b68113ef835194519f5e76cadda08559929b68297f1a8a568c207f9f66
+  checksum: 755d07de735eafda4e20af75ad9d03bdbfddef327d790e9a896142eac7493db5d8501591376e1c8227aa12eeb88e522bc727c6024504842ed40e539e8a466db9
   languageName: node
   linkType: hard
 
@@ -1734,30 +1734,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-copy-to-clipboard@npm:^5.0.6":
-  version: 5.0.6
-  resolution: "@types/react-copy-to-clipboard@npm:5.0.6"
+"@types/react-copy-to-clipboard@npm:^5.0.7":
+  version: 5.0.7
+  resolution: "@types/react-copy-to-clipboard@npm:5.0.7"
   dependencies:
     "@types/react": "npm:*"
-  checksum: c03fa75de2db27b08a86f258443b7e61184150a69fb0a22ab6d8181c652c126cdea71d3de5ad41ef9b23602283bea1d3c13784629970feda77984dc83533119e
+  checksum: 33bea4549fa263b597d0dedb3807f99286d8ccf59adb370e3d82d1c9075195925a343982abd73c63cc47854a7240ddae79873a5cb3590c9b33c1b65bf9d07689
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.2.14":
-  version: 18.2.14
-  resolution: "@types/react-dom@npm:18.2.14"
+"@types/react-dom@npm:18.2.15":
+  version: 18.2.15
+  resolution: "@types/react-dom@npm:18.2.15"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 1f79a7708d038cd651bdb21e01a99c594761bc9a40a565abe98958e1d27facfeb6e9824ddf6ae3504e7a56568f0f3da2380fe52ac18477b5864d2d5cf1386a9e
+  checksum: 70e86f15f69f89b8f179139ab2e8a8aa9765e742789f5dd5a46fec40d4300ada8fe3349cceda42b9964a018982d7ccb7d791b47f781966c992bfd37da909fbd3
   languageName: node
   linkType: hard
 
-"@types/react-syntax-highlighter@npm:^15.5.9":
-  version: 15.5.9
-  resolution: "@types/react-syntax-highlighter@npm:15.5.9"
+"@types/react-syntax-highlighter@npm:^15.5.10":
+  version: 15.5.10
+  resolution: "@types/react-syntax-highlighter@npm:15.5.10"
   dependencies:
     "@types/react": "npm:*"
-  checksum: be3a6b9ba0ea5961777c3333a69967b9bdb1e8fbdd6556601a405ff2c9200de545f197b3e879cddd9ee7bdfeaeb1d861a4349cdec30a093446770e6a1458a583
+  checksum: 2b270d66cf736925d56ec87d67e41501d3a1240ea4999ea3628f4d7bf9051c495732247e7fccbef9cd40585601856c63ff4d837a9e20d1d89cd6862b38c13178
   languageName: node
   linkType: hard
 
@@ -1772,14 +1772,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.36":
-  version: 18.2.36
-  resolution: "@types/react@npm:18.2.36"
+"@types/react@npm:18.2.37":
+  version: 18.2.37
+  resolution: "@types/react@npm:18.2.37"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 02b593041e9c25aaf519b5e4f87282aff559c0f3db214d7db68fee714d8286c09ab1fced68184fbe814e061019024bb479bbcd38b07985e3e794d98c96c49123
+  checksum: 79dd5d23da05bec54e7423ca17096e345eb8fd80a3bf8dd916bb5cdd60677d27c298523aa5b245d090fcc4ec100cfd58c1af4631fbac709d0a9d8be75f9d78a9
   languageName: node
   linkType: hard
 
@@ -1804,10 +1804,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:^9.0.6":
-  version: 9.0.6
-  resolution: "@types/uuid@npm:9.0.6"
-  checksum: 8fb6b3a583a035b8e917192eeadaadadfbfd29315094aafd3478e11f11a986cb118ee0f388b15035fda063d9f1a32fa62e7a791215b762fe1e2c177929ca7146
+"@types/uuid@npm:^9.0.7":
+  version: 9.0.7
+  resolution: "@types/uuid@npm:9.0.7"
+  checksum: b329ebd4f9d1d8e08d4f2cc211be4922d70d1149f73d5772630e4a3acfb5170c6d37b3d7a39a0412f1a56e86e8a844c7f297c798b082f90380608bf766688787
   languageName: node
   linkType: hard
 
@@ -1943,9 +1943,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ai@npm:^2.2.20":
-  version: 2.2.20
-  resolution: "ai@npm:2.2.20"
+"ai@npm:^2.2.21":
+  version: 2.2.21
+  resolution: "ai@npm:2.2.21"
   dependencies:
     eventsource-parser: "npm:1.0.0"
     nanoid: "npm:3.3.6"
@@ -1968,7 +1968,7 @@ __metadata:
       optional: true
     vue:
       optional: true
-  checksum: c29bcc96939c829c3a0329785c69fec78c64051875119eb6212d55330a52e5e59966bf2e2d35c0c4b7ce80faeaa20a891430f3ff3980e08bf6b6b84399b583ff
+  checksum: 22a5850c25c42b3311d4cfc1ea0055758a6184434dd25e890435435665682d853adf0d53b1a3f87238ba2280323c309cac137b91283f73119412395a55eec0d9
   languageName: node
   linkType: hard
 
@@ -6119,15 +6119,15 @@ __metadata:
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@radix-ui/react-tooltip": "npm:^1.0.7"
     "@t3-oss/env-core": "npm:^0.7.1"
-    "@tanstack/query-core": "npm:^5.7.2"
-    "@tanstack/react-query": "npm:^5.7.2"
-    "@types/node": "npm:20.8.10"
-    "@types/react": "npm:18.2.36"
-    "@types/react-copy-to-clipboard": "npm:^5.0.6"
-    "@types/react-dom": "npm:18.2.14"
-    "@types/react-syntax-highlighter": "npm:^15.5.9"
-    "@types/uuid": "npm:^9.0.6"
-    ai: "npm:^2.2.20"
+    "@tanstack/query-core": "npm:^5.8.1"
+    "@tanstack/react-query": "npm:^5.8.1"
+    "@types/node": "npm:20.9.0"
+    "@types/react": "npm:18.2.37"
+    "@types/react-copy-to-clipboard": "npm:^5.0.7"
+    "@types/react-dom": "npm:18.2.15"
+    "@types/react-syntax-highlighter": "npm:^15.5.10"
+    "@types/uuid": "npm:^9.0.7"
+    ai: "npm:^2.2.21"
     autoprefixer: "npm:10.4.16"
     class-variance-authority: "npm:^0.7.0"
     clsx: "npm:^2.0.0"
