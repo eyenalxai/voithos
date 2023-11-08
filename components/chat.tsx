@@ -6,20 +6,12 @@ import { mapMessages } from '@/lib/mapping'
 import { ChatPanel } from '@/components/chat-panel/chat-panel'
 import { cn } from '@/lib/utils'
 import { useState } from 'react'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
 import { ChatList } from '@/components/chat-panel/messages-display/chat-list'
 import { ChatScrollAnchor } from '@/components/chat-panel/chat-scroll-anchor'
 import { useQueryClient } from '@tanstack/react-query'
 import { ChatGPTModel, Message } from '@/lib/schema'
 import { revalidateChat } from '@/lib/actions'
+import { SelectModel } from '@/components/chat-panel/select-model'
 
 type ChatProps = {
   uuid4: string
@@ -57,23 +49,7 @@ export default function Chat({
 
   return (
     <div className={cn('flex', 'flex-col', 'items-center')}>
-      <Select
-        onValueChange={value => setModel(value as ChatGPTModel)}
-        defaultValue={model}
-      >
-        <SelectTrigger className={cn('w-44', 'mt-4')}>
-          <SelectValue placeholder="GPT Model" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>GPT Models</SelectLabel>
-            <SelectItem value={'gpt_3_5_turbo' as ChatGPTModel}>
-              GPT 3.5 Turbo
-            </SelectItem>
-            <SelectItem value={'gpt_4' as ChatGPTModel}>GPT 4 Turbo</SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+      <SelectModel model={model} setModel={setModel} />
       <ChatList messages={messages} />
       <ChatScrollAnchor trackVisibility={isLoading} />
       <ChatPanel
