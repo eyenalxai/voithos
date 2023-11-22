@@ -10,10 +10,7 @@ export type ChatMessageProps = {
 
 export function ChatMessage({ message, ...props }: ChatMessageProps) {
   return (
-    <div
-      className={cn('group relative mb-4 flex items-start md:-ml-12')}
-      {...props}
-    >
+    <div className={cn('group relative mb-4 flex items-start')} {...props}>
       <ChatMessageAvatar message={message} />
       <div
         className={cn(
