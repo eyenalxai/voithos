@@ -17,9 +17,9 @@ export function shorten(str: string, length: number) {
 
 export const enumToModelName = (
   model: ChatGPTModel
-): 'gpt-3.5-turbo-1106' | 'gpt-4-1106-preview' => {
+): 'gpt-3.5-turbo-1106' | 'gpt-4-turbo-preview' => {
   if (model === 'gpt_3_5_turbo') return 'gpt-3.5-turbo-1106'
-  if (model === 'gpt_4') return 'gpt-4-1106-preview'
+  if (model === 'gpt_4') return 'gpt-4-turbo-preview'
 
   throw new Error(`Unknown model: ${model}`)
 }
