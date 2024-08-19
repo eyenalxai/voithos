@@ -1,0 +1,1 @@
+ALTER TYPE "chat_gpt_model" ADD VALUE 'gpt_4o';

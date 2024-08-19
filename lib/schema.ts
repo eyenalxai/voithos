@@ -15,7 +15,8 @@ export type Role = (typeof roleEnum.enumValues)[number]
 
 export const chatGPTModelEnum = pgEnum('chat_gpt_model', [
   'gpt_3_5_turbo',
-  'gpt_4'
+  'gpt_4',
+  'gpt_4o'
 ])
 
 export type ChatGPTModel = (typeof chatGPTModelEnum.enumValues)[number]
