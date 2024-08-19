@@ -6,10 +6,12 @@ const LIMIT_MODIFIER = 0.65
 
 export const GPT_4_TOKENS_LIMIT = 128_000
 export const GPT_3_5_TURBO_TOKENS_LIMIT = 16_000
+export const GPT_4o_TOKENS_LIMIT = 128_000
 
 export const MODEL_TOKENS_LIMITS: Record<ChatGPTModel, number> = {
   gpt_3_5_turbo: GPT_3_5_TURBO_TOKENS_LIMIT,
-  gpt_4: GPT_4_TOKENS_LIMIT
+  gpt_4: GPT_4_TOKENS_LIMIT,
+  gpt_4o: GPT_4o_TOKENS_LIMIT
 }
 
 export const removeMessagesToFitLimit = (

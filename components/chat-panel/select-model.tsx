@@ -33,6 +33,7 @@ export const SelectModel = ({ model, setModel }: SelectModelProps) => {
             GPT 3.5 Turbo
           </SelectItem>
           <SelectItem value={'gpt_4' as ChatGPTModel}>GPT 4 Turbo</SelectItem>
+          <SelectItem value={'gpt_4o' as ChatGPTModel}>GPT-4o</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
