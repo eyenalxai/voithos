@@ -2,7 +2,6 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import { ReactNode } from 'react'
 import { Providers } from '@/components/providers'
-import { Header } from '@/components/header/header'
 import { Viewport } from 'next'
 import { fontMono, fontSans } from '@/components/ui/fonts'
 
@@ -15,13 +14,7 @@ export const viewport: Viewport = {
 
 export const metadata = {
   title: 'Voithos',
-  description: 'Voithos | Chat GPT',
-  openGraph: {
-    title: 'Voithos',
-    description: 'Voithos | Chat GPT',
-    type: 'website',
-    url: process.env.NEXT_PUBLIC_BASE_URL
-  }
+  description: 'Voithos | Chat GPT'
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -36,7 +29,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
-          <Header />
           <main className={cn('container', 'mx-auto', 'max-w-5xl')}>
             {children}
           </main>
